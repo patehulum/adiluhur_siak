@@ -16,10 +16,10 @@ class TblUser extends Migration
         Schema::create('tbl_user', function (Blueprint $table) {
             $table->bigIncrements('id_user');
             $table->string('nama_lengkap', 40);
-            $table->string('username', 30);
+            $table->string('email', 30);
             $table->string('password', 40);
             $table->integer('id_level_user');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
