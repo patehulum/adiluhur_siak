@@ -78,7 +78,11 @@
 
       @foreach ($sql_menu as $main)
 
-      @if ($main->is_main_menu==0)
+      {{-- {{$sub = $menu->where(['is_main_menu','=', $main->id])->get()}} --}}
+      {{-- {{ $sub = \App\Menu::where(['is_main_menu', '=>', $main->id])->get() }} --}}
+
+
+      {{-- @if ($sub) --}}
 
       <li class='treeview'>
         <a href="{{ $main->link }}"><i class='{{ $main->icon }}'></i>
@@ -87,35 +91,34 @@
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
+        {{-- {{ $sub }} --}}
+
+        {{-- submenunya disini --}}
+        <ul class='treeview-menu'>
+          {{-- @foreach ($submenu as $m)
+          <li>
+            <a href="{{$m->link }}"><i class={{ $m->icon }}></i>
+          <span>{{ $m->nama_menu }}</span>
+          </a>
       </li>
-
-      {{-- submenunya disini --}}
-      <ul class='treeview-menu'>
-
-        {{-- @foreach ($main as $sub)
-        <li>
-          <a href="{{$sub->link }}"><i class={{ $sub->icon }}></i>
-        <span>{{ $sub->nama_menu }}</span>
-        </a>
-        </li>";
-        @endforeach --}}
-
-        @endif
-
-        @endforeach
+      @endforeach --}}
+    </ul>
+    </li>
+    {{-- @endif --}}
+    @endforeach
 
 
 
 
-        {{-- <li>{{ $item->link }}<i class={{ $item->icon }}></i><span>{{ $item->nama_menu }}</span>
-        </li>
+    {{-- <li>{{ $item->link }}<i class={{ $item->icon }}></i><span>{{ $item->nama_menu }}</span>
+    </li>
 
-      </ul>
-      </li>
-      //submenu false dan main menu true
-      <li>{{ $main->link }}<i class={{ $main->icon }}></i><span>{{ ".$main->nama_menu." }}</span></li> --}}
+    </ul>
+    </li>
+    //submenu false dan main menu true
+    <li>{{ $main->link }}<i class={{ $main->icon }}></i><span>{{ ".$main->nama_menu." }}</span></li> --}}
 
-      {{-- // tanpa pembatasan hak akses menu
+    {{-- // tanpa pembatasan hak akses menu
       // $main_menu = $this->db->get_where('tabel_menu', array('is_main_menu' => 0))->result();
 
       // foreach ($main_menu as $main) {
@@ -146,7 +149,6 @@
       ";
       // }
       // } --}}
-    </ul>
   </section>
   <!-- /.sidebar -->
 </aside>

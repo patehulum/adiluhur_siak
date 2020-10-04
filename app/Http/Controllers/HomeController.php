@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Menu;
 use App\UserRule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -32,10 +33,11 @@ class HomeController extends Controller
         // $sql_menu = Menu::where('id', $collection);
 
         $menu = new Menu;
-        // $submenu = $menu->where('is_main_menu', 'id')->get();
         $sql_menu = $menu->whereHas('rule', function ($query) use ($collection) {
-            $query->whereIn('id', $collection);
+            $query->whereIn('id', $collection)
+                    ->where('is_main_menu', 0);
         })->get();
+        // $array = Arr::add(['is_mine_menu' => 'id']);
         // $sql_menu = "SELECT * FROM `tabel_menu` WHERE id IN(SELECT id_menu FROM tbl_user_rule WHERE id_level_user =
         // $id_level_user) AND is_main_menu = 0";
 
