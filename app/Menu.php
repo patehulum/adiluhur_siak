@@ -23,4 +23,8 @@ class Menu extends Model
     public function users(){
         return $this->hasMany('App\User');
     }
+
+    public function siswa(){
+        return $this->hasMany('App\Siswa');
+    }
 }

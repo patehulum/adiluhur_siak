@@ -36,23 +36,8 @@
           </form>
         </li>
 
-        <!-- Control Sidebar Toggle Button 
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
-    -->
       </ul>
     </div>
-    {{--
-    <li class="nav-item">
-      <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
-    </li>
-    @if (Route::has('logout'))
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
-    </li>
-    @endif --}}
-
   </nav>
 </header>
 
@@ -78,11 +63,7 @@
 
       @foreach ($sql_menu as $main)
 
-      {{-- {{$sub = $menu->where(['is_main_menu','=', $main->id])->get()}} --}}
-      {{-- {{ $sub = \App\Menu::where(['is_main_menu', '=>', $main->id])->get() }} --}}
-
-
-      {{-- @if ($sub) --}}
+      @if ($sub = $menu->where('is_main_menu', '=', $main->id)->count())
 
       <li class='treeview'>
         <a href="{{ $main->link }}"><i class='{{ $main->icon }}'></i>
@@ -90,65 +71,33 @@
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
+          {{-- {{ $sub }} --}}
+
+          {{-- submenunya disini --}}
+          <ul class='treeview-menu'>
+            @foreach ($sub=$menu->where('is_main_menu', '=', $main->id)->get() as $m)
+            <li>
+              <a href="{{$m->link }}"><i class="{{ $m->icon }}"></i>
+                <span>{{ $m->nama_menu }}</span>
+              </a>
+            </li>
+            @endforeach
+          </ul>
         </a>
-        {{-- {{ $sub }} --}}
-
-        {{-- submenunya disini --}}
-        <ul class='treeview-menu'>
-          {{-- @foreach ($submenu as $m)
-          <li>
-            <a href="{{$m->link }}"><i class={{ $m->icon }}></i>
-          <span>{{ $m->nama_menu }}</span>
-          </a>
       </li>
-      @endforeach --}}
+      @else
+      <li>
+        <a href="{{ $main->link }}"><i class="{{ $main->icon }}"></i>
+          <span>{{ $main->nama_menu }}</span>
+        </a>
+      </li>
+      @endif
+      @endforeach
     </ul>
-    </li>
-    {{-- @endif --}}
-    @endforeach
 
 
 
 
-    {{-- <li>{{ $item->link }}<i class={{ $item->icon }}></i><span>{{ $item->nama_menu }}</span>
-    </li>
-
-    </ul>
-    </li>
-    //submenu false dan main menu true
-    <li>{{ $main->link }}<i class={{ $main->icon }}></i><span>{{ ".$main->nama_menu." }}</span></li> --}}
-
-    {{-- // tanpa pembatasan hak akses menu
-      // $main_menu = $this->db->get_where('tabel_menu', array('is_main_menu' => 0))->result();
-
-      // foreach ($main_menu as $main) {
-      // // check apakah memiliki submenu?
-      // $submenu = $this->db->get_where('tabel_menu', array('is_main_menu' => $main->id));
-
-      // if ($submenu->num_rows()>0) {
-      // //submenu true
-      // echo "<li class='treeview'>".anchor($main->link,"<i class='".$main->icon."'></i>".
-        // "<span>".$main->nama_menu."</span>".
-        // '<span class="pull-right-container">
-          // <i class="fa fa-angle-left pull-right"></i>
-          // </span>');
-
-        // //submenunya disini
-        // echo "<ul class='treeview-menu'>";
-
-          // foreach ($submenu->result() as $sub) {
-          // echo "<li>" .anchor($sub->link,"<i class='".$sub->icon."'></i>"."<span>".$sub->nama_menu."</span>"). "</li>
-          ";
-          // }
-
-          // echo "</ul>
-      </li>";
-      // } else {
-      // //submenu false dan main menu true
-      // echo "<li>" .anchor($main->link,"<i class='".$main->icon."'></i>"."<span>".$main->nama_menu."</span>"). "</li>
-      ";
-      // }
-      // } --}}
   </section>
   <!-- /.sidebar -->
 </aside>
@@ -158,15 +107,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <!-- Main content -->
-
-
-    {{-- <li class='treeview'>{{ $main->link }}<i class='{{ $main->icon }}'></i>
-    <span>{{ $main->nama_menu }}</span>
-    <span class="pull-right-container">
-      <i class="fa fa-angle-left pull-right"></i>
-    </span>
-    </li> --}}
-
+    @yield('content')
     <!-- /.content -->
 
 </div>

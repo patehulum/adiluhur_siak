@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Guru;
 use App\Menu;
+use App\Ruangan;
+use App\Siswa;
+use App\User;
 use App\UserRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class HomeController extends DashboardBaseController
 {
     /**
      * Create a new controller instance.
@@ -17,6 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth');
     }
 
@@ -28,30 +33,19 @@ class HomeController extends Controller
     public function index()
     {
 
-        $user = Auth::user()->id_level_user;
-        $collection = UserRule::select('id_menu')->where('id_level_user', $user);
-        // $sql_menu = Menu::where('id', $collection);
+        
 
-        $menu = new Menu;
-        $sql_menu = $menu->whereHas('rule', function ($query) use ($collection) {
-            $query->whereIn('id', $collection)
-                    ->where('is_main_menu', 0);
-        })->get();
-        // $array = Arr::add(['is_mine_menu' => 'id']);
-        // $sql_menu = "SELECT * FROM `tabel_menu` WHERE id IN(SELECT id_menu FROM tbl_user_rule WHERE id_level_user =
-        // $id_level_user) AND is_main_menu = 0";
+        $users = User::select('id')->count();
+        $guru = Guru::select('id_guru')->count();
+        $siswa = Siswa::select('nis')->count();
+        $ruangan = Ruangan::select('kd_ruangan')->count();
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
 
-        // $sql_menu =  Menu::whereIn('id', function($query){
-        // $query->select('id_menu')
-        // ->from(with(new UserRule)->getTable())
-        // ->select('id_level_user')
-        // ->from(with(new Auth)->get())
-        // ->whereIn('id_level_user',$user)
-        // ->where('active', );
-        // })->get();
+        
 
-        // select('nama_menu', 'link', 'icon', 'is_main_menu')->where('id', $collection);
-        // dd($submenu);
-        return view('home', compact('sql_menu', 'collection', 'user', 'menu'));
+        return view('home', compact(
+            'users', 'guru', 'siswa', 'ruangan', 'menu', 'sql_menu'
+        ));
     }
 }

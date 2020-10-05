@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\Admin\SiswaController;
+
 Route::get('/', function () {
     return view('/auth/login');
 });
@@ -18,3 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+// Route::resource('siswa', 'SiswaController');
+Route::get('/siswa', 'SiswaController@index');
+Route::get('/siswa/create', 'SiswaController@create');
+Route::post('/siswa/store', 'SiswaController@store');
