@@ -44,7 +44,7 @@ class HomeController extends DashboardBaseController
 
         
 
-        return view('home', compact(
+        return view('/home', compact(
             'users', 'guru', 'siswa', 'ruangan', 'menu', 'sql_menu'
         ));
     }

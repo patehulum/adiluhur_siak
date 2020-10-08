@@ -13,4 +13,14 @@ class Agama extends Model
     protected $fillable = [
         'nama_agama'
     ];
+
+    protected $primaryKey = 'kd_agama';
+
+    public function siswa(){
+        return $this->hasMany('App\Siswa');
+    }
+
+    public function guru(){
+        return $this->hasMany('App\Guru');
+    }
 }

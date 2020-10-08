@@ -1,5 +1,5 @@
 @extends('layouts/navbar')
-
+@section('title', 'Admin LTE | Skripsi Yunita')
 @section('content')
 <!-- Small boxes (Stat box) -->
 <div class="row">

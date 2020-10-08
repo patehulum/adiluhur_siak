@@ -3,7 +3,7 @@
 @section('navbar')
 <header class="main-header">
   <!-- Logo -->
-  <a href="" class="logo">
+  <a href="/" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>A</b>L</span>
     <!-- logo for regular state and mobile devices -->
@@ -66,7 +66,7 @@
       @if ($sub = $menu->where('is_main_menu', '=', $main->id)->count())
 
       <li class='treeview'>
-        <a href="{{ $main->link }}"><i class='{{ $main->icon }}'></i>
+        <a href="/{{ $main->link }}"><i class='{{ $main->icon }}'></i>
           <span>{{ $main->nama_menu }}</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
@@ -77,7 +77,7 @@
           <ul class='treeview-menu'>
             @foreach ($sub=$menu->where('is_main_menu', '=', $main->id)->get() as $m)
             <li>
-              <a href="{{$m->link }}"><i class="{{ $m->icon }}"></i>
+              <a href="/{{$m->link }}"><i class="{{ $m->icon }}"></i>
                 <span>{{ $m->nama_menu }}</span>
               </a>
             </li>
@@ -87,7 +87,7 @@
       </li>
       @else
       <li>
-        <a href="{{ $main->link }}"><i class="{{ $main->icon }}"></i>
+        <a href="/{{ $main->link }}"><i class="{{ $main->icon }}"></i>
           <span>{{ $main->nama_menu }}</span>
         </a>
       </li>

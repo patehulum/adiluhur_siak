@@ -13,4 +13,10 @@ class Kelas extends Model
     protected $fillable = [
         'kd_kelas', 'nama_kelas', 'kd_tingkatan', 'kd_jurusan'
     ];
+
+    protected $primaryKey = 'kd_kelas';
+
+    public function siswa(){
+        return $this->hasMany('App\Siswa');
+    }
 }

@@ -26,7 +26,7 @@ class TblGuru extends Migration
             $table->integer('tahun');
             $table->string('no_telp', 15);
             $table->string('foto');
-            $table->string('username');
+            $table->string('email');
             $table->string('password');
             $table->timestamps();
         });

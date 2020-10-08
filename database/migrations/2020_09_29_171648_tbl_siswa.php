@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class TblSiswa extends Migration
 {
@@ -31,10 +32,12 @@ class TblSiswa extends Migration
             $table->string('foto');
             $table->string('kd_kelas', 10);
             $table->string('status_siswa', 20);
-            $table->string('username', 20);
+            $table->string('email', 20);
             $table->string('password', 50);
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE tbl_siswa AUTO_INCREMENT = 24521;");
     }
 
     /**

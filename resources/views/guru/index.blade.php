@@ -3,7 +3,7 @@
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
 </script>
 <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
-@section('title', 'Data Siswa')
+@section('title', 'Data Guru')
 @section('content')
 <div class="row">
     <div class="col-xs-12">
@@ -16,7 +16,7 @@
             <div class="box-body">
 
                 <!-- button add -->
-                <a href="/siswa/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
+                <a href="/guru/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="dataTables_length" id="mytable_length"><label>Show <select name="mytable_length"
@@ -38,28 +38,24 @@
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>FOTO</th>
-                            <th>NIS</th>
+                            <th>NUPTK</th>
                             <th>NAMA</th>
                             <th>JENIS KELAMIN</th>
-                            <th>TANGGAL LAHIR</th>
-                            <th>Status</th>
+                            <th>STATUS</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($siswa as $s)
+                        @foreach ($guru as $g)
                         <tr>
                             <td></td>
-                            <td><img src="{{ asset('storage/'.$s->foto) }}" width="100px" height="100px"></td>
-                            <td>{{ $s->nis }}</td>
-                            <td>{{ $s->nama }}</td>
-                            <td>{{ $s->jenis_kelamin }}</td>
-                            <td>{{ $s->tanggal_lahir }}</td>
-                            <td>{{ $s->status_siswa }}</td>
+                            <td>{{ $g->nuptk }}</td>
+                            <td>{{ $g->nama_guru }}</td>
+                            <td>{{ $g->jenis_kelamin }}</td>
+                            <td>{{ $g->status }}</td>
                             <td>
-                                <a href="/siswa/{{$s->nis}}"><i class="fa fa-eye" style="margin-right:5px"></i></a>
-                                <a href="/siswa/{{$s->nis}}/edit"><i class="fa fa-edit"
+                                <a href="/siswa/{{$g->nis}}"><i class="fa fa-eye" style="margin-right:5px"></i></a>
+                                <a href="/siswa/{{$g->nis}}/edit"><i class="fa fa-edit"
                                         style="margin-right:5px"></i></a>
                             </td>
                         </tr>

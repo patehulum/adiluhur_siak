@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Agama;
+use App\Kelas;
 use App\Menu;
 use App\Siswa;
 use App\UserRule;
@@ -11,6 +13,16 @@ use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends DashboardBaseController
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +34,7 @@ class SiswaController extends DashboardBaseController
         $sql_menu = $this->view[0]->sql_menu;
         $siswa = Siswa::all();
 
-        return view('/siswa/index',compact('sql_menu', 'menu', 'siswa'));
+        return view('/siswa/index', compact('sql_menu', 'menu', 'siswa'));
     }
 
     /**
@@ -32,17 +44,10 @@ class SiswaController extends DashboardBaseController
      */
     public function create()
     {
-        $user = Auth::user()->id_level_user;
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
 
-        $collection = UserRule::select('id_menu')->where('id_level_user', $user);
-
-        $menu = new Menu;
-
-        $sql_menu = $menu->whereHas('rule', function ($query) use ($collection) {
-        $query->whereIn('id', $collection)
-        ->where('is_main_menu', 0);
-        })->get();
-        return view('/siswa/create',compact('sql_menu', 'collection', 'user', 'menu'));
+        return view('/siswa/create', compact('sql_menu', 'menu'));
     }
 
     /**
@@ -52,26 +57,29 @@ class SiswaController extends DashboardBaseController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $siswa = new Siswa;
-        $siswa->nama = $request->nama;
-        $siswa->tanggal_lahir = $request->tanggal_lahir;
-        $siswa->jenis_kelamin = $request->jenis_kelamin;
-        $siswa->agama = $request->agama;
-        $siswa->alamat_siswa = $request->alamat_siswa;
-        $siswa->no_telp_siswa = $request->no_telp_siswa;
-        $siswa->sekolah_asal = $request->sekolah_asal;
-        $siswa->no_ijazah = $request->no_ijazah;
-        $siswa->nama_ayah = $request->nama_ayah;
-        $siswa->nama_ibu = $request->nama_ibu;
-        $siswa->alamat_ortu = $request->alamat_ortu;
-        $siswa->no_telp_ortu = $request->no_telp_ortu;
-        $siswa->userfile = Storage::put('Siswa', $request->userfile);
-        $siswa->kelas = $request->kelas;
-        $siswa->status_siswa = $request->status_siswa;
-        $siswa->email = $request->email;
-        $siswa->password = $request->password;
-        $siswa->save;
+    {
+
+        Siswa::create([
+            'nama'          => $request->nama,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'kd_agama'         => $request->kd_agama,
+            'alamat_siswa'  => $request->alamat_siswa,
+            'no_telp_siswa'      => $request->no_telp_siswa,
+            'sekolah_asal'  => $request->sekolah_asal,
+            'no_ijazah'     => $request->no_ijazah,
+            'nama_ayah'     => $request->nama_ayah,
+            'nama_ibu'      => $request->nama_ibu,
+            'alamat_ortu'   => $request->alamat_ortu,
+            'no_telp_ortu'  => $request->no_telp_ortu,
+            'foto'          => Storage::put('Siswa', $request->foto),
+            'kd_kelas'         => $request->kd_kelas,
+            'status_siswa'  => $request->status_siswa,
+            'email'         => $request->email,
+            'password'      => $request->password,
+        ]);
+
 
         return redirect()->action('SiswaController@index');
     }
@@ -82,9 +90,13 @@ class SiswaController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nis)
     {
-        //
+        $siswa = Siswa::where('nis', $nis)->get();
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+
+        return view('/siswa/show', compact('siswa', 'sql_menu', 'menu'));
     }
 
     /**
@@ -93,9 +105,15 @@ class SiswaController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nis)
     {
-        //
+        $s = new Siswa();
+        $siswa = $s->where('nis', $nis)->firstOrFail();
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+
+        // dd($agama);
+        return view('/siswa/edit', compact('siswa', 'sql_menu', 'menu'));
     }
 
     /**
@@ -105,9 +123,32 @@ class SiswaController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nis)
     {
-        //
+        $foto = $request->file('foto')->store('Siswa');
+        Siswa::where('nis', $nis)
+            ->update([
+                'nama' => $request->nama,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'kd_agama' => $request->kd_agama,
+                'alamat_siswa' => $request->alamat_siswa,
+                'no_telp_siswa' => $request->no_telp_siswa,
+                'sekolah_asal' => $request->sekolah_asal,
+                'no_ijazah' => $request->no_ijazah,
+                'nama_ayah' => $request->nama_ayah,
+                'nama_ibu' => $request->nama_ibu,
+                'alamat_ortu' => $request->alamat_ortu,
+                'no_telp_ortu' => $request->no_telp_ortu,
+                'foto' => $foto,
+                'kd_kelas' => $request->kd_kelas,
+                'status_siswa' => $request->status_siswa,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+
+        return redirect()->action('SiswaController@index');
     }
 
     /**
@@ -116,8 +157,10 @@ class SiswaController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nis)
     {
-        //
+        Siswa::destroy($nis);
+
+        return redirect()->action('SiswaController@index');
     }
 }

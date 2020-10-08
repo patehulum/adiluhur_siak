@@ -9,14 +9,21 @@ class Siswa extends Model
     //Menghubungkan model dengan table
     protected $table = 'tbl_siswa';
 
+    protected $primaryKey = 'nis';
+
     //Menentukan field yang boleh diisi
     protected $fillable = [
         'nama', 'jenis_kelamin', 'alamat_siswa', 'tanggal_lahir', 'tempat_lahir', 'nama_ayah', 'nama_ibu',
-        'alamat_ortu', 'no_telp_ortu', 'no_telp_siswa', 'no_ijazah', 'asal_sekolah', 'kd_agama', 'foto',
-        'kd_kelas', 'status_siswa', 'email', 'password'
+        'alamat_ortu', 'no_telp_ortu', 'no_telp_siswa', 'no_ijazah', 'sekolah_asal', 'kd_agama', 'foto',
+        'kd_kelas', 'status_siswa', 'email', 'password',
     ];
 
-    public function menu(){
-    return $this->belongsTo('App\Menu');
+    public function kelas(){
+    return $this->belongsTo('App\Kelas', 'kd_kelas', 'kd_kelas');
     }
+
+    public function agama(){
+        return $this->belongsTo('App\Agama', 'kd_agama', 'kd_agama');
+    }
+
 }

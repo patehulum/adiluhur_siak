@@ -1,4 +1,7 @@
 @extends('layouts/navbar')
+@section('title')
+Tambah Data Siswa
+@endsection
 @section('content')
 <div class="row">
     <div class="col-xs-12">
@@ -9,10 +12,11 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="/siswa/store" method="post">
-                @csrf
-                <div class="box-body">
 
+            <div class="box-body">
+                <form role="form" class="form-horizontal" action="/siswa/store" method="post"
+                    enctype="multipart/form-data">
+                    @csrf
                     <!--div class="form-group">
                                       <label class="col-sm-2 control-label">NIS</label>
                 
@@ -38,11 +42,11 @@
 
                         <div class="col-sm-2">
                             <!-- <input type="date" name="date1" max=
-                                        <?php echo date('Y-m-d', strtotime(2006));
+                                        <?php echo date('YYYY-mm-dd', strtotime(2006));
                                         ?>
                                         > -->
                             <input type='text' class="form-control" id='datepicker'
-                                placeholder='Tanggal / Bulan / Tahun' name="tanggal_lahir" style='width: 300px;'>
+                                placeholder='Tahun / Bulan / Tanggal' name="tanggal_lahir" style='width: 300px;'>
 
                         </div>
                     </div>
@@ -63,7 +67,7 @@
                         <label class="col-sm-2 control-label">Agama</label>
 
                         <div class="col-sm-5">
-                            <select name="agama" class="form-control">
+                            <select name="kd_agama" class="form-control">
                                 <option value="1">ISLAM</option>
                                 <option value="2">KRISTEN/ PROTESTAN</option>
                                 <option value="3">KATHOLIK</option>
@@ -152,7 +156,7 @@
                         <label class="col-sm-2 control-label">Foto</label>
 
                         <div class="col-sm-5">
-                            <input type="file" name="userfile">
+                            <input type="file" name="foto">
                         </div>
                     </div>
 
@@ -160,7 +164,7 @@
                         <label class="col-sm-2 control-label">Kelas Awal</label>
 
                         <div class="col-sm-5">
-                            <select name="kelas" class="form-control">
+                            <select name="kd_kelas" class="form-control">
                                 <option value="IPAX1">X IPA 1</option>
                                 <option value="IPAX2">X IPA 2</option>
                                 <option value="IPAXI1">XI IPA 1</option>
@@ -189,10 +193,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Username</label>
+                        <label class="col-sm-2 control-label">Email</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="username" class="form-control" placeholder="Masukkan Username">
+                            <input type="email" name="email" class="form-control" placeholder="Masukkan Username">
                         </div>
                     </div>
 
@@ -218,8 +222,8 @@
                         </div>
                     </div>
 
-                </div>
-                <!-- /.box-body -->
+            </div>
+            <!-- /.box-body -->
             </form>
         </div>
         <!-- /.box -->
@@ -242,7 +246,7 @@
     $(document).ready(function(){
      
       $('#datepicker').datepicker({
-        format: "yy-mm-dd",
+        format: "yyyy-mm-dd",
         startDate: new Date('2000-1-1'),
         endDate: new Date('2006-12-31')
       });
