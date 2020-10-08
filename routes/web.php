@@ -33,10 +33,10 @@ Route::patch('/siswa/{nis}', 'SiswaController@update');
 Route::get('/guru', 'GuruController@index');
 Route::get('/guru/create', 'GuruController@create');
 Route::post('/guru/store', 'GuruController@store');
-Route::get('/guru/{nis}', 'GuruController@show');
-Route::get('/guru/{nis}/edit', 'GuruController@edit');
-Route::delete('/guru/{nis}', 'GuruController@destroy');
-Route::patch('/guru/{nis}', 'GuruController@update');
+Route::get('/guru/{id_guru}', 'GuruController@show');
+Route::get('/guru/{id_guru}/edit', 'GuruController@edit');
+Route::delete('/guru/{id_guru}', 'GuruController@destroy');
+Route::patch('/guru/{id_guru}', 'GuruController@update');
 
 //
 Route::get('/menu/create', 'MenuController@create');

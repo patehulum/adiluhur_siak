@@ -49,14 +49,13 @@ class GuruController extends DashboardBaseController
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kd_agama' => $request->kd_agama,
             'alamat_guru' => $request->alamat_guru,
             'status' => $request->status,
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'tahun' => $request->tahun,
             'no_telp' => $request->no_telp,
             'foto' => Storage::put('Guru', $request->foto),
-            'status_siswa' => $request->status_siswa,
+            'status' => $request->status,
             'email' => $request->email,
             'password' => $request->password,
         ]);
@@ -70,9 +69,13 @@ class GuruController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_guru)
     {
-        //
+        $guru = Guru::where('id_guru', $id_guru)->get();
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+
+        return view('/guru/show', compact('sql_menu', 'menu', 'guru'));
     }
 
     /**
@@ -81,9 +84,14 @@ class GuruController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_guru)
     {
-        //
+        $guru = Guru::where('id_guru', $id_guru)->firstOrFail();
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+
+        // dd($agama);
+        return view('/guru/edit', compact('guru', 'sql_menu', 'menu'));
     }
 
     /**
@@ -93,9 +101,27 @@ class GuruController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_guru)
     {
-        //
+        Guru::where('id_guru', $id_guru)
+        ->update([
+            'nuptk' => $request->nuptk,
+            'nama_guru' => $request->nama_guru,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat_guru' => $request->alamat_guru,
+            'status' => $request->status,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'tahun' => $request->tahun,
+            'no_telp' => $request->no_telp,
+            'foto' => Storage::put('Guru', $request->foto),
+            'status' => $request->status,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        return redirect()->action('GuruController@index');
     }
 
     /**
@@ -104,8 +130,10 @@ class GuruController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_guru)
     {
-        //
+        Guru::destroy($id_guru);
+
+        return redirect()->action('GuruController@index');
     }
 }

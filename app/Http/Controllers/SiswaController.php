@@ -107,8 +107,7 @@ class SiswaController extends DashboardBaseController
      */
     public function edit($nis)
     {
-        $s = new Siswa();
-        $siswa = $s->where('nis', $nis)->firstOrFail();
+        $siswa = Siswa::where('nis', $nis)->firstOrFail();
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
 

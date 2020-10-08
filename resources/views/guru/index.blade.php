@@ -39,7 +39,7 @@
                         <tr>
                             <th>NO</th>
                             <th>NUPTK</th>
-                            <th>NAMA</th>
+                            <th>NAMA LENGKAP</th>
                             <th>JENIS KELAMIN</th>
                             <th>STATUS</th>
                             <th>AKSI</th>
@@ -54,9 +54,16 @@
                             <td>{{ $g->jenis_kelamin }}</td>
                             <td>{{ $g->status }}</td>
                             <td>
-                                <a href="/siswa/{{$g->nis}}"><i class="fa fa-eye" style="margin-right:5px"></i></a>
-                                <a href="/siswa/{{$g->nis}}/edit"><i class="fa fa-edit"
-                                        style="margin-right:5px"></i></a>
+                                <form action="/guru/{{$g->id_guru}}" method="post" enctype="multipart/form-data">
+                                    @method('delete')
+                                    @csrf
+                                    <a href="/guru/{{$g->id_guru}}"><i class="fa fa-eye"
+                                            style="margin-right:20px"></i></a>
+                                    <a href="/guru/{{$g->id_guru}}/edit"><i class="fa fa-edit"
+                                            style="margin-right:5px"></i></a>
+                                    <button type="submit" name="submit" class="btn btn-link btn-flat in-line"><i
+                                            class="fa fa-times" style="color:red"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

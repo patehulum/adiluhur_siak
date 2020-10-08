@@ -41,13 +41,8 @@ Tambah Data Siswa
                         </div>
 
                         <div class="col-sm-2">
-                            <!-- <input type="date" name="date1" max=
-                                        <?php echo date('YYYY-mm-dd', strtotime(2006));
-                                        ?>
-                                        > -->
                             <input type='text' class="form-control" id='datepicker'
                                 placeholder='Tahun / Bulan / Tanggal' name="tanggal_lahir" style='width: 300px;'>
-
                         </div>
                     </div>
 
