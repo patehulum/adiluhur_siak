@@ -9,6 +9,10 @@ class Jurusan extends Model
     //Menghubungkan model dengan table
     protected $table = 'tbl_jurusan';
 
+    protected $primaryKey = 'kd_jurusan';
+
+    public $incrementing = false;
+
     //Menentukan field yang boleh diisi
     protected $fillable = [
         'kd_jurusan', 'nama_jurusan'

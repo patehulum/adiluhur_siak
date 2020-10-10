@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$tingkatan->nama_tingkatan}} | Edit
+{{$jurusan->nama_jurusan}} | Edit
 @endsection
 @section('content')
 <section class="content">
@@ -16,25 +16,25 @@
 
 
                 <div class="box-body">
-                    <form role="form" class="form-horizontal" action="/tingkatan/{{$tingkatan->kd_tingkatan}}"
-                        method="post" enctype="multipart/form-data">
+                    <form role="form" class="form-horizontal" action="/jurusan/{{$jurusan->kd_jurusan}}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Kode Tingkatan Kelas</label>
+                            <label class="col-sm-2 control-label">Kode Jurusan Kelas</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$tingkatan->kd_tingkatan}}" name="kd_tingkatan"
-                                    class="form-control" placeholder="Masukkan Kode Tingkatan Kelas" readonly>
+                                <input type="text" value="{{$jurusan->kd_jurusan}}" name="kd_jurusan"
+                                    class="form-control" placeholder="Masukkan Kode Jurusan Kelas" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Nama Tingkatan Kelas</label>
+                            <label class="col-sm-2 control-label">Nama Jurusan Kelas</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$tingkatan->nama_tingkatan}}" name="nama_tingkatan"
-                                    class="form-control" placeholder="Masukkan Nama Tingkatan Kelas">
+                                <input type="text" value="{{$jurusan->nama_jurusan}}" name="nama_jurusan"
+                                    class="form-control" placeholder="Masukkan Nama Jurusan Kelas">
                             </div>
                         </div>
 

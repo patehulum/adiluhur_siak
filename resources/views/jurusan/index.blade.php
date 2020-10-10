@@ -11,7 +11,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <!-- button add -->
-                <a href="/tingkatan/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
+                <a href="/jurusan/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="dataTables_length" id="mytable_length"><label>Show <select name="mytable_length"
@@ -35,23 +35,22 @@
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>KODE TINGKATAN KELAS</th>
-                            <th>NAMA NAMA TINGKATAN KELAS</th>
+                            <th>KODE JURUSAN</th>
+                            <th>NAMA NAMA JURUSAN</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tingkatan as $t)
+                        @foreach ($jurusan as $j)
                         <tr>
                             <td></td>
-                            <td>{{ $t->kd_tingkatan }}</td>
-                            <td>{{ $t->nama_tingkatan }}</td>
+                            <td>{{ $j->kd_jurusan }}</td>
+                            <td>{{ $j->nama_jurusan }}</td>
                             <td>
-                                <form action="/tingkatan/{{$t->kd_tingkatan}}" method="post"
-                                    enctype="multipart/form-data">
+                                <form action="/jurusan/{{$j->kd_jurusan}}" method="post" enctype="multipart/form-data">
                                     @method('delete')
                                     @csrf
-                                    <a href="/tingkatan/{{$t->kd_tingkatan}}/edit"><i class="fa fa-edit"
+                                    <a href="/jurusan/{{$j->kd_jurusan}}/edit"><i class="fa fa-edit"
                                             style="margin-right:5px"></i></a>
                                     <button type="submit" name="submit" class="btn btn-link btn-flat in-line"><i
                                             class="fa fa-times" style="color:red"></i></button>
