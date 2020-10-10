@@ -1,5 +1,8 @@
 @extends('layouts/template')
 
+@section('title', 'Login' )
+
+@endsection
 @section('login')
 
 <div class="login-box">

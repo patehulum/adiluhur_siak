@@ -162,15 +162,10 @@ Tambah Data Guru
                             <button type="submit" name="submit" onclick="incrementValue()" value="Increment Value"
                                 class="btn btn-primary btn-flat">Simpan</button>
                         </div>
-
-                        <div class="col-sm-1">
-
-                        </div>
                     </div>
-
+                </form>
             </div>
             <!-- /.box-body -->
-            </form>
         </div>
         <!-- /.box -->
     </div>

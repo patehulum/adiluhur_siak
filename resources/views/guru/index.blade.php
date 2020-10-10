@@ -48,6 +48,7 @@
                     <tbody>
                         @foreach ($guru as $g)
                         <tr>
+                            {{-- {{dd($guru)}} --}}
                             <td></td>
                             <td>{{ $g->nuptk }}</td>
                             <td>{{ $g->nama_guru }}</td>

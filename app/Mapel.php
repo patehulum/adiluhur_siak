@@ -9,8 +9,12 @@ class Mapel extends Model
     //Menghubungkan model dengan table
     protected $table = 'tbl_mapel';
 
+    protected $primaryKey = 'kd_mapel';
+
+    public $incrementing = false;
+
     //Menentukan field yang boleh diisi
     protected $fillable = [
-        'nama_mapel'
+        'kd_mapel','nama_mapel'
     ];
 }

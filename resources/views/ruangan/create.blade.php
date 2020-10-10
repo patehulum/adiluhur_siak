@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-Tambah Data Mapel
+Tambah Data Ruangan
 @endsection
 @section('content')
 <div class="row">
@@ -14,22 +14,31 @@ Tambah Data Mapel
             <!-- form start -->
 
             <div class="box-body">
-                <form role="form" class="form-horizontal" action="/mapel/store" method="post"
+                <form role="form" class="form-horizontal" action="/ruangan/store" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Kode Mapel</label>
+                        <label class="col-sm-2 control-label">Kode Ruangan</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="kd_mapel" class="form-control" placeholder="Masukkan Kode Mapel">
+                            <input type="text" name="kd_ruangan" class="form-control" placeholder="Masukkan Kode Mapel">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Nama Mapel</label>
+                        <label class="col-sm-2 control-label">Nama Ruangan</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="nama_mapel" class="form-control" placeholder="Masukkan Nama Mapel">
+                            <input type="text" name="nama_ruangan" class="form-control"
+                                placeholder="Masukkan Nama Mapel">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Kapasitas</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" name="kapasitas" class="form-control" placeholder="Masukkan Kapasistas">
                         </div>
                     </div>
 

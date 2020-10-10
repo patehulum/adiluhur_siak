@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyToTblGuruTable extends Migration
+class AddTingkatanToTableTingkatan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class ModifyToTblGuruTable extends Migration
      */
     public function up()
     {
-        Schema::table('tbl_guru', function (Blueprint $table) {
-            //
+        Schema::table('tbl_tingkatan_kelas', function (Blueprint $table) {
+            $table->renameColumn('kd_tinkatan', 'kd_tingkatan');
         });
     }
 
@@ -25,7 +25,7 @@ class ModifyToTblGuruTable extends Migration
      */
     public function down()
     {
-        Schema::table('tbl_guru', function (Blueprint $table) {
+        Schema::table('tbl_tingkatan', function (Blueprint $table) {
             //
         });
     }

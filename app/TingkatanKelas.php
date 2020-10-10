@@ -9,8 +9,12 @@ class TingkatanKelas extends Model
     //Menghubungkan model dengan table
     protected $table = 'tbl_tingkatan_kelas';
 
+    protected $primaryKey = 'kd_tingkatan';
+
+    public $incrementing = false;
+
     //Menentukan field yang boleh diisi
     protected $fillable = [
-        'kd_tingkatan', 'nama_tinkatan'
+        'kd_tingkatan', 'nama_tingkatan'
     ];
 }

@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$mapel->nama_mapel}} | Edit
+{{$ruangan->nama_ruangan}} | Edit
 @endsection
 @section('content')
 <section class="content">
@@ -16,25 +16,34 @@
 
 
                 <div class="box-body">
-                    <form role="form" class="form-horizontal" action="/mapel/{{$mapel->kd_mapel}}" method="post"
+                    <form role="form" class="form-horizontal" action="/ruangan/{{$ruangan->kd_ruangan}}" method="post"
                         enctype="multipart/form-data">
-                        @csrf
                         @method('patch')
+                        @csrf
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Kode Mapel</label>
+                            <label class="col-sm-2 control-label">Kode Ruangan</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$mapel->kd_mapel}}" name="kd_mapel" class="form-control"
-                                    placeholder="Masukkan Kode Mapel" readonly>
+                                <input type="text" value="{{$ruangan->kd_ruangan}}" name="kd_ruangan"
+                                    class="form-control" placeholder="Masukkan Kode Mapel">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Nama Mapel</label>
+                            <label class="col-sm-2 control-label">Nama Ruangan</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$mapel->nama_mapel}}" name="nama_mapel" class="form-control"
-                                    placeholder="Masukkan Nama Mapel">
+                                <input type="text" value="{{$ruangan->nama_ruangan}}" name="nama_ruangan"
+                                    class="form-control" placeholder="Masukkan Nama Mapel">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Kapasitas</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" value="{{$ruangan->kapasitas}}" name="kapasitas" class="form-control"
+                                    placeholder="Masukkan Kapasistas">
                             </div>
                         </div>
 

@@ -124,6 +124,7 @@ class SiswaController extends DashboardBaseController
      */
     public function update(Request $request, $nis)
     {
+        dd($request);
         $foto = $request->file('foto')->store('Siswa');
         Siswa::where('nis', $nis)
             ->update([

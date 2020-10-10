@@ -14,7 +14,7 @@ class TblTingkatanKelas extends Migration
     public function up()
     {
         Schema::create('tbl_tingkatan_kelas', function (Blueprint $table) {
-            $table->string('kd_tinkatan', 5)->primary();
+            $table->string('kd_tingkatan', 5)->primary();
             $table->string('nama_tingkatan', 30);
             $table->timestamps();
         });

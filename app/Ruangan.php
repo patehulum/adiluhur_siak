@@ -9,8 +9,12 @@ class Ruangan extends Model
     //Menghubungkan model dengan table
     protected $table = 'tbl_ruangan';
 
+    protected $primaryKey = 'kd_ruangan';
+
+    public $incrementing = false;
+
     //Menentukan field yang boleh diisi
     protected $fillable = [
-        'nama_ruangan', 'kapasitas'
+       'kd_ruangan', 'nama_ruangan', 'kapasitas'
     ];
 }

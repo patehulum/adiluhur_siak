@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$mapel->nama_mapel}} | Edit
+{{$tingkatan->nama_tingkatan}} | Edit
 @endsection
 @section('content')
 <section class="content">
@@ -16,25 +16,25 @@
 
 
                 <div class="box-body">
-                    <form role="form" class="form-horizontal" action="/mapel/{{$mapel->kd_mapel}}" method="post"
-                        enctype="multipart/form-data">
+                    <form role="form" class="form-horizontal" action="/tingkatan/{{$tingkatan->kd_tingkatan}}"
+                        method="post" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Kode Mapel</label>
+                            <label class="col-sm-2 control-label">Kode Tingkatan Kelas</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$mapel->kd_mapel}}" name="kd_mapel" class="form-control"
-                                    placeholder="Masukkan Kode Mapel" readonly>
+                                <input type="text" value="{{$tingkatan->kd_tingkatan}}" name="kd_tingkatan"
+                                    class="form-control" placeholder="Masukkan Kode Tingkatan Kelas" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Nama Mapel</label>
+                            <label class="col-sm-2 control-label">Nama Tingkatan Kelas</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$mapel->nama_mapel}}" name="nama_mapel" class="form-control"
-                                    placeholder="Masukkan Nama Mapel">
+                                <input type="text" value="{{$tingkatan->nama_tingkatan}}" name="nama_tingkatan"
+                                    class="form-control" placeholder="Masukkan Nama Tingkatan Kelas">
                             </div>
                         </div>
 

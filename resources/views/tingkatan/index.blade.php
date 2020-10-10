@@ -1,22 +1,17 @@
 @extends('layouts/navbar')
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
-</script>
-<link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
-@section('title', 'Data Siswa')
+@section('title', 'Data Mata Pelajaran')
 @section('content')
 <div class="row">
     <div class="col-xs-12">
 
         <div class="box box-primary">
             <div class="box-header  with-border">
-                <h3 class="box-title">Data Table Siswa</h3>
+                <h3 class="box-title">Data Table Mata Pelajaran</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-
                 <!-- button add -->
-                <a href="/siswa/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
+                <a href="/tingkatan/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="dataTables_length" id="mytable_length"><label>Show <select name="mytable_length"
@@ -34,41 +29,38 @@
                     </div>
                 </div>
 
+                <!-- button add -->
                 <table id="mytable" class="table table-striped table-bordered table-hover table-full-width dataTable"
                     cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>FOTO</th>
-                            <th>NIS</th>
-                            <th>NAMA</th>
-                            <th>JENIS KELAMIN</th>
-                            <th>TANGGAL LAHIR</th>
-                            <th>Status</th>
+                            <th>KODE TINGKATAN KELAS</th>
+                            <th>NAMA NAMA TINGKATAN KELAS</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($siswa as $s)
+                        @foreach ($tingkatan as $t)
                         <tr>
-                            {{-- {{(dd($siswa))}} --}}
                             <td></td>
-                            <td><img src="{{ asset('storage/'.$s->foto) }}" width="100px" height="100px"></td>
-                            <td>{{ $s->nis }}</td>
-                            <td>{{ $s->nama }}</td>
-                            <td>{{ $s->jenis_kelamin }}</td>
-                            <td>{{ $s->tanggal_lahir }}</td>
-                            <td>{{ $s->status_siswa }}</td>
+                            <td>{{ $t->kd_tingkatan }}</td>
+                            <td>{{ $t->nama_tingkatan }}</td>
                             <td>
-                                <a href="/siswa/{{$s->nis}}"><i class="fa fa-eye" style="margin-right:5px"></i></a>
-                                <a href="/siswa/{{$s->nis}}/edit"><i class="fa fa-edit"
-                                        style="margin-right:5px"></i></a>
+                                <form action="/tingkatan/{{$t->kd_tingkatan}}" method="post"
+                                    enctype="multipart/form-data">
+                                    @method('delete')
+                                    @csrf
+                                    <a href="/tingkatan/{{$t->kd_tingkatan}}/edit"><i class="fa fa-edit"
+                                            style="margin-right:5px"></i></a>
+                                    <button type="submit" name="submit" class="btn btn-link btn-flat in-line"><i
+                                            class="fa fa-times" style="color:red"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-
             </div>
             <!-- /.box-body -->
         </div>
@@ -77,7 +69,6 @@
     <!-- /.col -->
 </div>
 <!-- /.row -->
-
 <style>
     body {
         counter-reset: Serial;
@@ -97,3 +88,7 @@
 
 </style>
 @endsection
+<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
+</script>
+<link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">

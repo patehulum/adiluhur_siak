@@ -52,13 +52,13 @@ class MenuSeeder extends Seeder
         DB::table('tabel_menu')->insert([
         'nama_menu' => 'Jurusan',
         'link' => 'jurusan',
-        'icon' => 'fa fa-large',
+        'icon' => 'fa fa-th-large',
         'is_main_menu' => 3,
         ]);
         DB::table('tabel_menu')->insert([
         'nama_menu' => 'Tahun Akademik',
         'link' => 'tahunakademik',
-        'icon' => 'fa fa-calender-check-o',
+        'icon' => 'fa fa-calendar-check-o',
         'is_main_menu' => 3,
         ]);
         DB::table('tabel_menu')->insert([
