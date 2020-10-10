@@ -66,10 +66,29 @@ Route::delete('/tingkatan/{kd_tingkatan}', 'TingkatanController@destroy');
 Route::patch('/tingkatan/{kd_tingkatan}', 'TingkatanController@update');
 
 // Route Jurusan;
-Route::get('jurusan', 'JurusanController@index');
-Route::get('jurusan/create', 'JurusanController@create');
-Route::post('jurusan/store', 'JurusanController@store');
-Route::get('jurusan/{kd_jurusan}', 'JurusanController@show');
-Route::get('jurusan/{kd_jurusan}/edit', 'JurusanController@edit');
-Route::delete('jurusan/{kd_jurusan}', 'JurusanController@destroy');
-Route::patch('jurusan/{kd_jurusan}', 'JurusanController@update');
+Route::get('/jurusan', 'JurusanController@index');
+Route::get('/jurusan/create', 'JurusanController@create');
+Route::post('/jurusan/store', 'JurusanController@store');
+Route::get('/jurusan/{kd_jurusan}', 'JurusanController@show');
+Route::get('/jurusan/{kd_jurusan}/edit', 'JurusanController@edit');
+Route::delete('/jurusan/{kd_jurusan}', 'JurusanController@destroy');
+Route::patch('/jurusan/{kd_jurusan}', 'JurusanController@update');
+
+// Route Tahun Akademik;
+Route::get('/tahunakademik', 'TahunAkademikController@index');
+Route::get('/tahunakademik/create', 'TahunAkademikController@create');
+Route::post('/tahunakademik/store', 'TahunAkademikController@store');
+Route::get('/tahunakademik/{kd_tahun_akademik}', 'TahunAkademikController@show');
+Route::get('/tahunakademik/{kd_tahun_akademik}/edit', 'TahunAkademikController@edit');
+Route::delete('/tahunakademik/{kd_tahun_akademik}', 'TahunAkademikController@destroy');
+Route::patch('/tahunakademik/{kd_tahun_akademik}', 'TahunAkademikController@update');
+
+// Route Kelas;
+Route::get('/kelas', 'KelasController@index');
+Route::get('/kelas/create', 'KelasController@create');
+Route::post('/kelas/store', 'KelasController@store');
+Route::get('/kelas/{kd_kelas}', 'KelasController@show');
+Route::get('/kelas/{kd_kelas}/edit', 'KelasController@edit');
+Route::delete('/kelas/{kd_kelas}', 'KelasController@destroy');
+Route::patch('/kelas/{kd_kelas}', 'KelasController@update');
+

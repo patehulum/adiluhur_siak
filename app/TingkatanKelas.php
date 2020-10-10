@@ -17,4 +17,8 @@ class TingkatanKelas extends Model
     protected $fillable = [
         'kd_tingkatan', 'nama_tingkatan'
     ];
+
+    public function kelas(){
+        return $this->hasMany('App\Kelas');
+    }
 }

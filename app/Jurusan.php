@@ -17,4 +17,8 @@ class Jurusan extends Model
     protected $fillable = [
         'kd_jurusan', 'nama_jurusan'
     ];
+
+    public function kelas(){
+        return $this->hasMany('App\Kelas');
+    }
 }

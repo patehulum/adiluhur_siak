@@ -1,5 +1,5 @@
 @extends('layouts/navbar')
-@section('title', 'Data Ruangan ')
+@section('title', 'Data Ruangan')
 @section('content')
 <div class="row">
     <div class="col-xs-12">
@@ -11,7 +11,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <!-- button add -->
-                <a href="/ruangan/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
+                <a href="/tahunakademik/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="dataTables_length" id="mytable_length"><label>Show <select name="mytable_length"
@@ -35,25 +35,24 @@
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>KODE RUANGAN</th>
-                            <th>NAMA RUANGAN</th>
-                            <th>KAPASITAS</th>
+                            <th>KODE JURUSAN</th>
+                            <th>NAMA NAMA JURUSAN</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ruangan as $r)
+                        @foreach ($tahunakademik as $t)
                         <tr>
-                            {{-- {{dd($rapel)}} --}}
                             <td></td>
-                            <td>{{ $r->kd_ruangan }}</td>
-                            <td>{{ $r->nama_ruangan }}</td>
-                            <td>{{ $r->kapasitas }}</td>
+                            <td>{{ $t->id_tahun_akademik }}</td>
+                            <td>{{ $t->tahun_akademik }}</td>
+                            <td>{{ $t->is_aktif }}</td>
                             <td>
-                                <form action="/ruangan/{{$r->kd_ruangan}}" method="post" enctype="multipart/form-data">
+                                <form action="/tahunakademik/{{$t->id_tahun_akademik}}" method="post"
+                                    enctype="multipart/form-data">
                                     @method('delete')
                                     @csrf
-                                    <a href="/ruangan/{{$r->kd_ruangan}}/edit"><i class="fa fa-edit"
+                                    <a href="/jurusan/{{$t->id_tahun_akademik}}/edit"><i class="fa fa-edit"
                                             style="margin-right:5px"></i></a>
                                     <button type="submit" name="submit" class="btn btn-link btn-flat in-line"><i
                                             class="fa fa-times" style="color:red"></i></button>

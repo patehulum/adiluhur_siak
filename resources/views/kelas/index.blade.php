@@ -1,5 +1,5 @@
 @extends('layouts/navbar')
-@section('title', 'Data Ruangan ')
+@section('title', 'Data Mata Pelajaran')
 @section('content')
 <div class="row">
     <div class="col-xs-12">
@@ -11,7 +11,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <!-- button add -->
-                <a href="/ruangan/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
+                <a href="/kelas/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="dataTables_length" id="mytable_length"><label>Show <select name="mytable_length"
@@ -35,25 +35,27 @@
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>KODE RUANGAN</th>
-                            <th>NAMA RUANGAN</th>
-                            <th>KAPASITAS</th>
+                            <th>KODE KELAS</th>
+                            <th>NAMA KELAS</th>
+                            <th>TINGKATAN</th>
+                            <th>JURUSAN</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ruangan as $r)
+                        @foreach ($kelas as $k)
                         <tr>
-                            {{-- {{dd($rapel)}} --}}
+                            {{-- {{dd($kapel)}} --}}
                             <td></td>
-                            <td>{{ $r->kd_ruangan }}</td>
-                            <td>{{ $r->nama_ruangan }}</td>
-                            <td>{{ $r->kapasitas }}</td>
+                            <td>{{ $k->kd_kelas }}</td>
+                            <td>{{ $k->nama_kelas }}</td>
+                            <td>{{ $k->tingkatan->nama_tingkatan }}</td>
+                            <td>{{ $k->jurusan->nama_jurusan }}</td>
                             <td>
-                                <form action="/ruangan/{{$r->kd_ruangan}}" method="post" enctype="multipart/form-data">
+                                <form action="/kelas/{{$k->kd_kelas}}" method="post" enctype="multipart/form-data">
                                     @method('delete')
                                     @csrf
-                                    <a href="/ruangan/{{$r->kd_ruangan}}/edit"><i class="fa fa-edit"
+                                    <a href="/kelas/{{$k->kd_kelas}}/edit"><i class="fa fa-edit"
                                             style="margin-right:5px"></i></a>
                                     <button type="submit" name="submit" class="btn btn-link btn-flat in-line"><i
                                             class="fa fa-times" style="color:red"></i></button>

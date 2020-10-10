@@ -1,8 +1,8 @@
 @extends('layouts/template')
 
-@section('title', 'Login' )
+{{-- @section('title', 'Login' )
 
-@endsection
+@endsection --}}
 @section('login')
 
 <div class="login-box">
