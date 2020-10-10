@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$mapel->nama_mapel}} | Edit
+{{$mapel->nama_mapel}} |
 @endsection
 @section('content')
 <section class="content">
@@ -9,7 +9,7 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Form Edit Siswa</h3>
+                    <h3 class="box-title">Form Edit Mata Pelajaran</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->

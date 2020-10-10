@@ -1,7 +1,5 @@
 @extends('layouts/navbar')
-@section('title')
-Tambah Data Mapel
-@endsection
+@section('title', 'Tambah Data Tingkatan | ')
 @section('content')
 <div class="row">
     <div class="col-xs-12">

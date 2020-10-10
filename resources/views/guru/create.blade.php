@@ -1,7 +1,5 @@
 @extends('layouts/navbar')
-@section('title')
-Tambah Data Guru
-@endsection
+@section('title', 'Tambah Data Guru | ')
 @section('content')
 <div class="row">
     <div class="col-xs-12">

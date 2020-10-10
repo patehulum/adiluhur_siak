@@ -3,7 +3,7 @@
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
 </script>
 <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
-@section('title', 'Data Siswa')
+@section('title', 'Data Siswa | ')
 @section('content')
 <div class="row">
     <div class="col-xs-12">

@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-Tambah Data Mata Pelajaran |
+Tambah Data Kurikulum |
 @endsection
 @section('content')
 <div class="row">
@@ -8,28 +8,33 @@ Tambah Data Mata Pelajaran |
 
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Form Tambah Mata Pelajaran</h3>
+                <h3 class="box-title">Form Tambah Kurikulum</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
 
             <div class="box-body">
-                <form role="form" class="form-horizontal" action="/mapel/store" method="post"
+                <form role="form" class="form-horizontal" action="/kurikulum/store" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Kode Mapel</label>
+                        <label class="col-sm-2 control-label">Nama Kurikulum</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="kd_mapel" class="form-control" placeholder="Masukkan Kode Mapel">
+                            <input type="text" name="nama_kurikulum" class="form-control"
+                                placeholder="Masukkan Kode kurikulum">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Nama Mapel</label>
+                        <label class="col-sm-2 control-label">Keterangan</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="nama_mapel" class="form-control" placeholder="Masukkan Nama Mapel">
+                            <select name="is_aktif" class="form-control">
+                                <option value="">Pilih Keterangan</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
                         </div>
                     </div>
 

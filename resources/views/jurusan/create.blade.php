@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
-@section('title')
-Tambah Data Jurusan
+@section('title' , 'Tambah Data Jurusan | ')
+
 @endsection
 @section('content')
 <div class="row">

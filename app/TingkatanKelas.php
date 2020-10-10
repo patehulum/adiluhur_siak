@@ -21,4 +21,8 @@ class TingkatanKelas extends Model
     public function kelas(){
         return $this->hasMany('App\Kelas');
     }
+
+    public function kurikulum(){
+        return $this->belongsTo('App\Kurikulum', 'id_kurikulum', 'id_kurikulum');
+    }
 }

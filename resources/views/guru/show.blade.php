@@ -2,7 +2,7 @@
 @foreach ($guru as $g)
 
 @section('title')
-{{$g->nama_guru}}
+{{$g->nama_guru}} |
 @endsection
 @section('content')
 <div class="row">

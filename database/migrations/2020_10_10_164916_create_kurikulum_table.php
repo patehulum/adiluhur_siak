@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TblKurikulum extends Migration
+class CreateKurikulumTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class TblKurikulum extends Migration
         Schema::create('tbl_kurikulum', function (Blueprint $table) {
             $table->bigIncrements('id_kurikulum');
             $table->string('nama_kurikulum', 30);
-            $table->enum('is_aktif',['Y','N']);
+            $table->enum('is_aktif',['Aktif','Tidak Aktif']);
             $table->timestamps();
         });
     }
@@ -28,6 +28,8 @@ class TblKurikulum extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tbl_kurikulum', function (Blueprint $table) {
+            //
+        });
     }
 }

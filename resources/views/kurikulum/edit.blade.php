@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$ruangan->nama_ruangan}} |
+{{$kurikulum->nama_kurikulum}} | Edit
 @endsection
 @section('content')
 <section class="content">
@@ -9,41 +9,35 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Form Edit Ruangan</h3>
+                    <h3 class="box-title">Form Edit Siswa</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
 
 
                 <div class="box-body">
-                    <form role="form" class="form-horizontal" action="/ruangan/{{$ruangan->kd_ruangan}}" method="post"
-                        enctype="multipart/form-data">
-                        @method('patch')
+                    <form role="form" class="form-horizontal" action="/kurikulum/{{$kurikulum->id_kurikulum}}"
+                        method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('patch')
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Kode Ruangan</label>
+                            <label class="col-sm-2 control-label">Nama Kurikulum</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$ruangan->kd_ruangan}}" name="kd_ruangan"
-                                    class="form-control" placeholder="Masukkan Kode Mapel">
+                                <input type="text" value="{{$kurikulum->nama_kurikulum}}" name="nama_kurikulum"
+                                    class="form-control" placeholder="Masukkan Kode kurikulum">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Nama Ruangan</label>
+                            <label class="col-sm-2 control-label">Keterangan</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$ruangan->nama_ruangan}}" name="nama_ruangan"
-                                    class="form-control" placeholder="Masukkan Nama Mapel">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Kapasitas</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" value="{{$ruangan->kapasitas}}" name="kapasitas" class="form-control"
-                                    placeholder="Masukkan Kapasistas">
+                                <select name="is_aktif" class="form-control">
+                                    <option value="{{$kurikulum->is_aktif}}">{{$kurikulum->is_aktif}}</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                </select>
                             </div>
                         </div>
 

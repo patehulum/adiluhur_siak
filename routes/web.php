@@ -92,3 +92,12 @@ Route::get('/kelas/{kd_kelas}/edit', 'KelasController@edit');
 Route::delete('/kelas/{kd_kelas}', 'KelasController@destroy');
 Route::patch('/kelas/{kd_kelas}', 'KelasController@update');
 
+// Route Kurikulum;
+Route::get('/kurikulum', 'KurikulumController@index');
+Route::get('/kurikulum/create', 'KurikulumController@create');
+Route::post('/kurikulum/store', 'KurikulumController@store');
+Route::get('/kurikulum/{kd_kurikulum}', 'KurikulumController@show');
+Route::get('/kurikulum/{kd_kurikulum}/edit', 'KurikulumController@edit');
+Route::delete('/kurikulum/{kd_kurikulum}', 'KurikulumController@destroy');
+Route::patch('/kurikulum/{kd_kurikulum}', 'KurikulumController@update');
+

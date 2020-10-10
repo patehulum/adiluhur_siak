@@ -3,7 +3,7 @@
 
 @endforeach
 @section('title')
-{{$s->nama}}
+{{$s->nama}} |
 @endsection
 @section('content')
 <div class="row">

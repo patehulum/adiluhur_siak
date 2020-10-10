@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$siswa->nama}} | Edit
+{{$siswa->nama}} |
 @endsection
 @section('content')
 <section class="content">

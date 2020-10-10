@@ -1,5 +1,5 @@
 @extends('layouts/navbar')
-@section('title', 'Data Ruangan')
+@section('title', 'Data Ruangan | ')
 @section('content')
 <div class="row">
     <div class="col-xs-12">

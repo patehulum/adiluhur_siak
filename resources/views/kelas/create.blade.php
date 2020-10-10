@@ -1,14 +1,12 @@
 @extends('layouts/navbar')
-@section('title')
-Tambah Data Kelas
-@endsection
+@section('title', Tambah Data Kelas | )
 @section('content')
 <div class="row">
     <div class="col-xs-12">
 
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Form Tambah Mapel</h3>
+                <h3 class="box-title">Form Tambah Kelas</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

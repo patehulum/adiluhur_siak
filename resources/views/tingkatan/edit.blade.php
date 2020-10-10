@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$tingkatan->nama_tingkatan}} | Edit
+{{$tingkatan->nama_tingkatan}} |
 @endsection
 @section('content')
 <section class="content">
@@ -9,7 +9,7 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Form Edit Siswa</h3>
+                    <h3 class="box-title">Form Edit Tingkatan</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->

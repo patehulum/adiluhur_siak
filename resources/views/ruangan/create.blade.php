@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-Tambah Data Ruangan
+Tambah Data Ruangan |
 @endsection
 @section('content')
 <div class="row">
@@ -8,7 +8,7 @@ Tambah Data Ruangan
 
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Form Tambah Mapel</h3>
+                <h3 class="box-title">Form Tambah Ruangan</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
