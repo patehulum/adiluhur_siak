@@ -26,4 +26,8 @@ class Siswa extends Model
         return $this->belongsTo('App\Agama', 'kd_agama', 'kd_agama');
     }
 
+    public function jurusan(){
+        return $this->belongsTo('App\Jurusan', 'kd_jurusan', 'kd_jurusan');
+    }
+
 }

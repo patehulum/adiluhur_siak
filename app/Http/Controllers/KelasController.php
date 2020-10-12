@@ -123,4 +123,10 @@ class KelasController extends DashboardBaseController
 
         return redirect()->action('KelasController@index');
     }
+
+    public function kelas($jurusan){
+        $j = Kelas::where('kd_jurusan', $jurusan)->get();
+ 
+        return response()->json($j);
+    }
 }

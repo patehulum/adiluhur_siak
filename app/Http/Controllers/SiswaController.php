@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jurusan;
+use App\Kelas;
 use App\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -158,5 +160,22 @@ class SiswaController extends DashboardBaseController
         Siswa::destroy($nis);
 
         return redirect()->action('SiswaController@index');
+    }
+
+    public function viewAktif()
+    {
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+        $siswa = Siswa::all();
+        $jurusan = Jurusan::all();
+
+        return view('/siswa/aktif', compact('sql_menu', 'menu', 'siswa', 'jurusan'));
+    }
+
+    public function kelas($jurusan)
+    {
+        // $kelas = Kelas::where('kd_jurusan', $kd_jurusan)->get();
+
+        return response()->json('Helo');
     }
 }

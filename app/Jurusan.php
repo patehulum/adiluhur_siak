@@ -29,4 +29,8 @@ class Jurusan extends Model
     public function detail(){
         return $this->hasMany('App\KurikulumDetail');
     }
+
+    public function siswa(){
+        return $this->hasMany('App\Siswa');
+    }
 }

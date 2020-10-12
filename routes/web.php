@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/siswa', 'SiswaController@index');
 Route::get('/siswa/create', 'SiswaController@create');
 Route::post('/siswa/store', 'SiswaController@store');
+Route::get('/siswa/aktif', 'DidikController@index');
+// Route::get('/didik/{jurusan}', 'SiswaController@kelas');
 Route::get('/siswa/{nis}', 'SiswaController@show');
 Route::get('/siswa/{nis}/edit', 'SiswaController@edit');
 Route::delete('/siswa/{nis}', 'SiswaController@destroy');
@@ -119,4 +121,15 @@ Route::get('/kurikulum_detail/{id}/edit', 'KurikulumDetailController@edit');
 Route::delete('/kurikulum_detail/{id}', 'KurikulumDetailController@destroy');
 Route::patch('/kurikulum_detail/{id}', 'KurikulumDetailController@update');
 Route::get('/kurikulum_detail/{kurikulum}/{tingkat_kelas}/{jurusan}', 'KurikulumDetailController@get');
+
+// Route Kurikulum Detail;
+Route::get('/didik', 'DidikDetailController@index');
+Route::get('/didik/create', 'DidikDetailController@create');
+Route::get('/didik/kelas/{jurusan}', 'KelasController@kelas');
+Route::get('/didik/siswa/{kelas}', 'DidikController@siswa');
+Route::post('/didik/store', 'DidikDetailController@store');
+Route::get('/didik/{id}', 'DidikDetailController@show');
+Route::get('/didik/{id}/edit', 'DidikDetailController@edit');
+Route::delete('/didik/{id}', 'DidikDetailController@destroy');
+Route::patch('/didik/{id}', 'DidikDetailController@update');
 

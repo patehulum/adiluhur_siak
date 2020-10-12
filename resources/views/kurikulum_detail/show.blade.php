@@ -40,7 +40,6 @@
                     </tr>
                     <tr>
                         <td colspan="2" id="kurikulum">
-                            isi
                         </td>
                     </tr>
                     <tr>

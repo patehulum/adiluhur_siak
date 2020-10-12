@@ -27,9 +27,10 @@ class TblSiswa extends Migration
             $table->string('no_telp_ortu', 15);
             $table->string('no_telp_siswa', 15);
             $table->string('no_ijazah', 20);
+            $table->string('kd_jurusan', 5);
             $table->string('sekolah_asal', 20);
             $table->integer('kd_agama');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('kd_kelas', 10);
             $table->string('status_siswa', 20);
             $table->string('email', 20);
