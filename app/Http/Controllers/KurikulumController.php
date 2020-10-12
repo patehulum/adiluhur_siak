@@ -63,7 +63,7 @@ class KurikulumController extends DashboardBaseController
      */
     public function show($id_kurikulum)
     {
-        $kurikulum = Kurikulum::where('id_kurikulum', $id_kurikulum)->firstOrFail();
+        $kurikulum = Kurikulum::where('id_kurikulum', $id_kurikulum)->get();
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
 

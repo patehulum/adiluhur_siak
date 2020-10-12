@@ -17,4 +17,8 @@ class Mapel extends Model
     protected $fillable = [
         'kd_mapel','nama_mapel'
     ];
+
+    public function detail(){
+        return $this->hasMany('App\KurikulumDetail');
+    }
 }

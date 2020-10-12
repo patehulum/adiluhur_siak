@@ -23,4 +23,8 @@ class Kurikulum extends Model
     public function kelas(){
         return $this->hasMany('App\Kelas');
     }
+
+    public function detail(){
+        return $this->hasMany('App\KurikulumDetail');
+    }
 }

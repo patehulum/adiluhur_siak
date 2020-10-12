@@ -1,5 +1,6 @@
 <?php
 
+use App\LevelUser;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,8 @@ class DatabaseSeeder extends Seeder
             // MenuSeeder::class,
             // UserSeeder::class,
             // AgamaSeeder::class,
-            KelasSeeder::class,
+            // KelasSeeder::class,
+            LevelUserSeeder::class,
         ]);
     }
 }

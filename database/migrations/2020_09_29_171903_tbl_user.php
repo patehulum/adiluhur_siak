@@ -20,6 +20,8 @@ class TblUser extends Migration
             $table->string('password', 40);
             $table->integer('id_level_user');
             $table->string('foto')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Agama;
-use App\Kelas;
-use App\Menu;
 use App\Siswa;
-use App\UserRule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -61,12 +57,12 @@ class SiswaController extends DashboardBaseController
 
         Siswa::create([
             'nama'          => $request->nama,
-            'tempat_lahir' => $request->tempat_lahir,
+            'tempat_lahir'  => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kd_agama'         => $request->kd_agama,
+            'kd_agama'      => $request->kd_agama,
             'alamat_siswa'  => $request->alamat_siswa,
-            'no_telp_siswa'      => $request->no_telp_siswa,
+            'no_telp_siswa' => $request->no_telp_siswa,
             'sekolah_asal'  => $request->sekolah_asal,
             'no_ijazah'     => $request->no_ijazah,
             'nama_ayah'     => $request->nama_ayah,
@@ -74,7 +70,7 @@ class SiswaController extends DashboardBaseController
             'alamat_ortu'   => $request->alamat_ortu,
             'no_telp_ortu'  => $request->no_telp_ortu,
             'foto'          => Storage::put('Siswa', $request->foto),
-            'kd_kelas'         => $request->kd_kelas,
+            'kd_kelas'      => $request->kd_kelas,
             'status_siswa'  => $request->status_siswa,
             'email'         => $request->email,
             'password'      => $request->password,

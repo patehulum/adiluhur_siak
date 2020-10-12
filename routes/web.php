@@ -101,3 +101,22 @@ Route::get('/kurikulum/{kd_kurikulum}/edit', 'KurikulumController@edit');
 Route::delete('/kurikulum/{kd_kurikulum}', 'KurikulumController@destroy');
 Route::patch('/kurikulum/{kd_kurikulum}', 'KurikulumController@update');
 
+// Route User;
+Route::get('/user', 'UserController@index');
+Route::get('/user/create', 'UserController@create');
+Route::post('/user/store', 'UserController@store');
+Route::get('/user/rule', 'UserController@show');
+Route::get('/user/{id}/edit', 'UserController@edit');
+Route::delete('/user/{id}', 'UserController@destroy');
+Route::patch('/user/{id}', 'UserController@update');
+
+// Route Kurikulum Detail;
+Route::get('/kurikulum_detail', 'KurikulumDetailController@index');
+Route::get('/kurikulum_detail/create', 'KurikulumDetailController@create');
+Route::post('/kurikulum_detail/store', 'KurikulumDetailController@store');
+Route::get('/kurikulum_detail/{id}', 'KurikulumDetailController@show');
+Route::get('/kurikulum_detail/{id}/edit', 'KurikulumDetailController@edit');
+Route::delete('/kurikulum_detail/{id}', 'KurikulumDetailController@destroy');
+Route::patch('/kurikulum_detail/{id}', 'KurikulumDetailController@update');
+Route::get('/kurikulum_detail/{kurikulum}/{tingkat_kelas}/{jurusan}', 'KurikulumDetailController@get');
+

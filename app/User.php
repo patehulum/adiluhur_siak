@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama_lengkap', 'email', 'password', 'id_level_user'
+        'nama_lengkap', 'email', 'password', 'id_level_user', 'foto'
     ];
 
     /**
@@ -37,11 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    public function level(){
-        return $this->belongsTo('App\UserRule');
-    }
+    // public function level(){
+    //     return $this->belongsTo('App\UserRule');
+    // }
 
     public function id_menu(){
         return $this->belongsTo('App\Menu', 'id_menu');
+    }
+
+    public function leveluser(){
+        return $this->belongsTo('App\LevelUser', 'id_level_user', 'id_level_user');
     }
 }

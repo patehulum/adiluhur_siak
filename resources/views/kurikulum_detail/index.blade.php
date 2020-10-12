@@ -51,7 +51,7 @@
                                     enctype="multipart/form-data">
                                     @method('delete')
                                     @csrf
-                                    <a href="/kurikulum_detail/{{$k->id_kurikulum}}"><i class="fa fa-eye"
+                                    <a href="/kurikulum/{{$k->id_kurikulum}}"><i class="fa fa-eye"
                                             style="margin-right:20px"></i></a>
                                     <a href="/kurikulum/{{$k->id_kurikulum}}/edit"><i class="fa fa-edit"
                                             style="margin-right:5px"></i></a>

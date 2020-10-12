@@ -161,9 +161,11 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Foto</label>
 
+
                             <div class="col-sm-5">
+                                <img src="{{ asset('storage/'.$siswa->foto) }}" width="100px" height="100px"
+                                    style="margin-bottom: 10px">
                                 <input type="file" name="foto">
-                                <img src="" width="150px">
                             </div>
                         </div>
 
