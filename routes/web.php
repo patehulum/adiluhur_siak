@@ -79,11 +79,11 @@ Route::patch('/jurusan/{kd_jurusan}', 'JurusanController@update');
 // Route Tahun Akademik;
 Route::get('/tahunakademik', 'TahunAkademikController@index');
 Route::get('/tahunakademik/create', 'TahunAkademikController@create');
+Route::patch('/tahunakademik/aktif/{id_tahun_akademik}', 'TahunAkademikController@aktif');
+Route::get('/tahunakademik/{id_tahun_akademik}', 'TahunAkademikController@edit');
+Route::patch('/tahunakademik/{id_tahun_akademik}', 'TahunAkademikController@update');
 Route::post('/tahunakademik/store', 'TahunAkademikController@store');
-Route::get('/tahunakademik/{kd_tahun_akademik}', 'TahunAkademikController@show');
-Route::get('/tahunakademik/{kd_tahun_akademik}/edit', 'TahunAkademikController@edit');
-Route::delete('/tahunakademik/{kd_tahun_akademik}', 'TahunAkademikController@destroy');
-Route::patch('/tahunakademik/{kd_tahun_akademik}', 'TahunAkademikController@update');
+Route::get('/tahunakademik/{id_tahun_akademik}/delete', 'TahunAkademikController@destroy');
 
 // Route Kelas;
 Route::get('/kelas', 'KelasController@index');

@@ -1,6 +1,6 @@
 @extends('layouts/navbar')
 @section('title')
-{{$tahunakademik->nama_tahuna_kademik}} | Edit
+{{$tahun->tahun_akademik}} |
 @endsection
 @section('content')
 <section class="content">
@@ -9,43 +9,67 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Form Edit Siswa</h3>
+                    <h3 class="box-title">Form Edit Tahun Akadamik</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
 
 
                 <div class="box-body">
-                    <form role="form" class="form-horizontal"
-                        action="/tahunakademik/{{$tahunakademik->id_tahuna_kademik}}" method="post"
-                        enctype="multipart/form-data">
+                    <form role="form" class="form-horizontal" action="/tahunakademik/{{$tahun->id_tahun_akademik}}"
+                        method="post" enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Kode tahunakademik Kelas</label>
+                            <label class="col-sm-2 control-label">Kode Tahun Akademik </label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$tahunakademik->id_tahuna_kademik}}"
-                                    name="id_tahuna_kademik" class="form-control"
-                                    placeholder="Masukkan Kode tahunakademik Kelas" readonly>
+                                <input type="text" value="{{$tahun->tahun_akademik}}" name="tahun_akademik"
+                                    class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Nama tahunakademik Kelas</label>
+                            <label class="col-sm-2 control-label">Is Aktif</label>
 
                             <div class="col-sm-9">
-                                <input type="text" value="{{$tahunakademik->nama_tahuna_kademik}}"
-                                    name="nama_tahuna_kademik" class="form-control"
-                                    placeholder="Masukkan Nama tahunakademik Kelas">
+                                <select name="is_aktif" class="form-control" disabled>
+                                    @if ($tahun->is_aktif == "Y")
+                                    <option value="{{$tahun->id_tahuna_kademik}}">
+                                        {{$tahun->is_aktif="Aktif"}}
+                                    </option>
+                                    @else
+                                    <option value="{{$tahun->id_tahuna_kademik}}">
+                                        {{$tahun->is_aktif="Tidak Aktif"}}
+                                    </option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Semester</label>
+
+                            <div class="col-sm-9">
+                                <select name="semester" class="form-control">
+                                    @if ($tahun->semester != null)
+                                    <option value="{{$tahun->semester}}">{{$tahun->semester}}</option>
+                                    @else
+                                    <option value="">Pilih Semester</option>
+                                    @endif
+                                    <option value="{{$tahun->semester}}">Ganjil</option>
+                                    <option value="{{$tahun->semester}}">Genap</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
 
-                            <div class="col-sm-1">
-                                <button type="submit" name="submit" class="btn btn-primary btn-flat">Simpan</button>
+                            <div class="col-sm-9">
+                                <button type="submit" name="submit"
+                                    class="btn btn-primary btn-flat margin">Simpan</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-danger btn-flat">Kembali</a>
                             </div>
                         </div>
                     </form>
