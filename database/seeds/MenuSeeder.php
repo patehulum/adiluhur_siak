@@ -78,7 +78,7 @@ class MenuSeeder extends Seeder
         'link' => 'jadwal',
         'icon' => 'fa fa-calendar-plus-o',
         'is_main_menu' => 0,
-        ]);
+        ]); 
         DB::table('tabel_menu')->insert([
         'nama_menu' => 'Peserta Didik',
         'link' => 'siswa/siswa_aktif',

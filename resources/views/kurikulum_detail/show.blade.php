@@ -103,12 +103,12 @@
                 
                 $.each(res, function(i, item){
                     try {
-                        $('.lists').append('<tr><td>'+item.kurikulum.nama_kurikulum+'</td><td>'+item.mapel.nama_mapel+'</td><td>'+item.jurusan.nama_jurusan+'</td><td>'+item.tingkatan.nama_tingkatan+'</td></tr>');
+                        $('.lists').append('<tr><td>'+item.kurikulum.nama_kurikulum+'</td><td>'+item.mapel.nama_mapel+'</td><td>'+item.jurusan.nama_jurusan+'</td><td>'+item.tingkatan.nama_tingkatan+'</td><td></td></tr>');
                         $('#kurikulum').html(item.kurikulum.nama_kurikulum);
                     } catch (error) {
                         console.log(error);
                     }
-                })
+                }) 
                 // console.log(res.data);
             }
         })

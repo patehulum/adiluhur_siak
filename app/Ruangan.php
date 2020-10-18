@@ -17,4 +17,9 @@ class Ruangan extends Model
     protected $fillable = [
        'kd_ruangan', 'nama_ruangan', 'kapasitas'
     ];
+
+    public function jadwal(){
+        return $this->hasMany('App\Jadwal');
+    }
+    
 }

@@ -15,4 +15,9 @@ class TahunAkademik extends Model
     protected $fillable = [
         'tahun_akademik', 'is_aktif', 'semester'
     ];
+
+    public function jadwal(){
+        return $this->hasMany('App\Jadwal');
+    }
+    
 }

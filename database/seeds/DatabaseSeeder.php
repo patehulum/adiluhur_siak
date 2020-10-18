@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             // MenuSeeder::class,
             // UserSeeder::class,
             // AgamaSeeder::class,
-            // KelasSeeder::class,
-            LevelUserSeeder::class,
+            KelasSeeder::class,
+            // LevelUserSeeder::class,
         ]);
     }
 }

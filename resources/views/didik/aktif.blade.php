@@ -80,12 +80,13 @@
             success : function(res) {
 
                 $.each(res, function(i, item){
-                try {
-                $('.kelas').append('<option id="cbkelas" value="'+item.kd_kelas'">'+item.nama_kelas'</option');
-                } catch (error) {
-                console.log(error);
-                }
+                    try {
+                    $('.kelas').append('<option id="cbkelas" value="'+item.kd_kelas'">'+item.nama_kelas'</option>');
+                    } catch (error) {
+                    console.log(error);
+                    }
 
+                })
             }
         })
     }

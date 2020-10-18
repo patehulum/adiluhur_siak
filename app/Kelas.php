@@ -31,4 +31,12 @@ class Kelas extends Model
         return $this->belongsTo('App\Jurusan', 'kd_jurusan', 'kd_jurusan');
     }
 
+    public function jadwal(){
+        return $this->hasMany('App\Jadwal');
+    }
+    
+    public function kurikulum(){
+        return $this->belongsTo('App\Kurikulum', 'id_kurikulum', 'id_kurikulum');
+    }
+    
 }

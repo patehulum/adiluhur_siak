@@ -20,4 +20,8 @@ class Guru extends Model
     public function agama(){
     return $this->belongsTo('App\Agama', 'kd_agama', 'kd_agama');
     }
+
+    public function jadwal(){
+    return $this->hasOne('App\Jadwal');
+    }
 }

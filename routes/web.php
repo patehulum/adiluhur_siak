@@ -122,7 +122,7 @@ Route::delete('/kurikulum_detail/{id}', 'KurikulumDetailController@destroy');
 Route::patch('/kurikulum_detail/{id}', 'KurikulumDetailController@update');
 Route::get('/kurikulum_detail/{kurikulum}/{tingkat_kelas}/{jurusan}', 'KurikulumDetailController@get');
 
-// Route Kurikulum Detail;
+// Route Didik;
 Route::get('/didik', 'DidikDetailController@index');
 Route::get('/didik/create', 'DidikDetailController@create');
 Route::get('/didik/kelas/{jurusan}', 'KelasController@kelas');
@@ -132,4 +132,27 @@ Route::get('/didik/{id}', 'DidikDetailController@show');
 Route::get('/didik/{id}/edit', 'DidikDetailController@edit');
 Route::delete('/didik/{id}', 'DidikDetailController@destroy');
 Route::patch('/didik/{id}', 'DidikDetailController@update');
+
+// Route Jadwal;
+Route::get('/jadwal', 'JadwalController@index');
+Route::get('/jadwal/create', 'JadwalController@create');
+Route::get('/jadwal/kelas/{jurusan}/{tingkatan}', 'JadwalController@kelas');
+Route::get('/jadwal/mapel/{tingkatan}/{kelas}', 'JadwalController@mapel');
+Route::get('/jadwal/guru/{guru}/{id}', 'JadwalController@guru');
+Route::get('/jadwal/ruangan/{ruangan}/{id}', 'JadwalController@ruangan');
+Route::get('/jadwal/hari/{hari}/{id}', 'JadwalController@hari');
+Route::get('/jadwal/jam/{jam}/{id}', 'JadwalController@jam');
+Route::get('/jadwal/{id_jadwal}/delete', 'JadwalController@destroy');
+
+// Route Walikelas;
+Route::get('/walikelas', 'WalikelasController@index');
+Route::get('/walikelas/create', 'WalikelasController@create');
+Route::get('/walikelas/kelas/{jurusan}/{tingkatan}', 'WalikelasController@kelas');
+Route::get('/walikelas/kelas/{tingkatan}{kelas}', 'WalikelasController@mapel');
+Route::get('/walikelas/siswa/{kelas}', 'WalikelasController@siswa');
+Route::post('/walikelas/store', 'WalikelasController@store');
+Route::get('/walikelas/{id}', 'WalikelasController@show');
+Route::get('/walikelas/{id}/edit', 'WalikelasController@edit');
+Route::delete('/walikelas/{id}', 'WalikelasController@destroy');
+Route::patch('/walikelas/{id}', 'WalikelasController@update');
 

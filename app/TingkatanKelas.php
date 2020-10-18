@@ -29,4 +29,9 @@ class TingkatanKelas extends Model
     public function detail(){
         return $this->hasMany('App\KurikulumDetail');
     }
+    
+    public function jadwal(){
+        return $this->hasMany('App\Jadwal');
+    }
+    
 }

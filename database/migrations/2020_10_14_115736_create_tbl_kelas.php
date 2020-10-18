@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TblKelas extends Migration
+class CreateTblKelas extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class TblKelas extends Migration
     public function up()
     {
         Schema::create('tbl_kelas', function (Blueprint $table) {
-            $table->string('kd_kelas', 10)->promary();
+            $table->string('kd_kelas', 10)->primary();
             $table->string('nama_kelas', 30);
             $table->string('kd_tingkatan', 5);
             $table->string('kd_jurusan', 5);
@@ -29,6 +29,6 @@ class TblKelas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tbl_kelas');
     }
 }
