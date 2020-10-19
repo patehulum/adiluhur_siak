@@ -148,3 +148,10 @@ Route::get('/jadwal/{id_jadwal}/delete', 'JadwalController@destroy');
 Route::get('/walikelas', 'WalikelasController@index');
 Route::get('/walikelas/{guru}/{id}', 'WalikelasController@guru');
 
+// Route Menu;
+Route::get('/menu', 'MenuController@index');
+Route::get('/menu/create', 'MenuController@create');
+Route::post('/menu/store', 'MenuController@store');
+Route::get('/menu/{id}/edit', 'MenuController@edit');
+Route::delete('/menu/{id}', 'MenuController@destroy');
+Route::patch('/menu/{id}', 'MenuController@update');

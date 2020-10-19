@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Menu;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class MenuController extends DashboardBaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,11 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+        $index = menu::all();
+
+        return view('/menu/index', compact('sql_menu', 'menu', 'index'));
     }
 
     /**
@@ -24,7 +33,11 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('/menu/create');
+         $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+        $index = menu::all();
+
+        return view('/menu/create', compact('sql_menu', 'menu', 'index'));
     }
 
     /**
@@ -40,12 +53,11 @@ class MenuController extends Controller
         'link' => $request->link,
         'icon' => $request->icon,
         'is_main_menu' => $request->is_main_menu,
-        
         ]);
 
         // return response()->json();
 
-        return redirect()->action('SiswaController@create');
+        return redirect()->action('MenuController@index');
     }
 
     /**
@@ -56,7 +68,7 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -67,7 +79,12 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+        $index = menu::where('id', $id);
+        $m = $index->first();
+
+        return view('/menu/edit', compact('sql_menu', 'menu', 'index', 'm'));
     }
 
     /**
@@ -79,7 +96,15 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Menu::where('id', $id)
+            ->update([
+                'nama_menu' => $request->nama_menu,
+                'link' => $request->link,
+                'icon' => $request->icon,
+                'is_main_menu' => $request->is_main_menu,
+            ]);
+        
+            return redirect()->action('MenuController@index');
     }
 
     /**
@@ -90,6 +115,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Menu::destroy($id);
+        
+        return redirect()->action('MenuController@index');
     }
 }
