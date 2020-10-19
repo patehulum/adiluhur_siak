@@ -18,6 +18,8 @@ class TblWalikelas extends Migration
             $table->integer('id_guru');
             $table->integer('id_tahun_akademik');
             $table->string('kd_kelas', 10);
+            $table->string('kd_jurusan', 5);
+            $table->string('kd_tingkatan', 5);
             $table->timestamps();
         });
     }

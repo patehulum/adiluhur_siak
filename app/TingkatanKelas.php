@@ -34,4 +34,7 @@ class TingkatanKelas extends Model
         return $this->hasMany('App\Jadwal');
     }
     
+    public function walikelas(){
+        return $this->belongsTo('App\Walikelas', 'id_walikelas', 'id_walikelas');
+    }
 }

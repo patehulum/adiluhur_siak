@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             // MenuSeeder::class,
             // UserSeeder::class,
             // AgamaSeeder::class,
-            KelasSeeder::class,
+            // KelasSeeder::class,
             // LevelUserSeeder::class,
         ]);
     }

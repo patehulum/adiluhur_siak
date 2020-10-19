@@ -146,13 +146,5 @@ Route::get('/jadwal/{id_jadwal}/delete', 'JadwalController@destroy');
 
 // Route Walikelas;
 Route::get('/walikelas', 'WalikelasController@index');
-Route::get('/walikelas/create', 'WalikelasController@create');
-Route::get('/walikelas/kelas/{jurusan}/{tingkatan}', 'WalikelasController@kelas');
-Route::get('/walikelas/kelas/{tingkatan}{kelas}', 'WalikelasController@mapel');
-Route::get('/walikelas/siswa/{kelas}', 'WalikelasController@siswa');
-Route::post('/walikelas/store', 'WalikelasController@store');
-Route::get('/walikelas/{id}', 'WalikelasController@show');
-Route::get('/walikelas/{id}/edit', 'WalikelasController@edit');
-Route::delete('/walikelas/{id}', 'WalikelasController@destroy');
-Route::patch('/walikelas/{id}', 'WalikelasController@update');
+Route::get('/walikelas/{guru}/{id}', 'WalikelasController@guru');
 

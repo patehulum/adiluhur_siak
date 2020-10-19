@@ -20,4 +20,8 @@ class TahunAkademik extends Model
         return $this->hasMany('App\Jadwal');
     }
     
+    public function walikelas(){
+        return $this->hasMany('App\Walikelas');
+    }
+    
 }

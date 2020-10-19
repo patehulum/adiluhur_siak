@@ -24,4 +24,9 @@ class Guru extends Model
     public function jadwal(){
     return $this->hasOne('App\Jadwal');
     }
+
+    public function walikelas(){
+        return $this->belongsTo('App\Walikelas', 'id_walikelas', 'id_walikelas');
+    }
+    
 }

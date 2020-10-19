@@ -10,12 +10,12 @@ Wali Kelas |
             <div class="box-header  with-border">
                 <table class="table table-bordered">
                     <tr>
-                        <td width="200">Tahun Akademik</td>
-                        <td> : <?php echo get_tahun_akademik('tahun_akademik'); ?></td>
+                        <th width="200">Tahun Akademik</th>
+                        <th> : {{$tahunakademik->tahun_akademik}} </th>
                     </tr>
                     <tr>
-                        <td>Semester</td>
-                        <td> : <?php echo get_tahun_akademik('semester'); ?></td>
+                        <th>Semester</th>
+                        <th> : {{$tahunakademik->semester}} </th>
                     </tr>
                 </table>
             </div>
@@ -42,6 +42,33 @@ Wali Kelas |
                             <th>NAMA WALIKELAS</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($walikelas as $w)
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                {{$w->kelas->nama_kelas}}
+                            </td>
+
+                            <td>
+                                {{$w->jurusan->nama_jurusan}}
+                            </td>
+                            <td>
+                                {{$w->tingkatan->nama_tingkatan}}
+                            </td>
+                            <td>
+                                <select id="guru" name="id_guru" class="form-control guru"
+                                    onChange="updateGuru({{$w->id_walikelas}})">
+                                    <option value="{{$w->id_guru}}">{{$w->guru->nama_guru}}</option>
+                                    @foreach ($guru as $g)
+                                    <option value="{{$g->id_guru}}">{{$g->nama_guru}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
 
             </div>
@@ -52,3 +79,35 @@ Wali Kelas |
     <!-- /.col -->
 </div>
 @endsection
+
+<style>
+    body {
+        counter-reset: Serial;
+        /* Set the Serial counter to 0 */
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    tr td:first-child:before {
+        counter-increment: Serial;
+        /* Increment the Serial counter */
+        content: counter(Serial);
+        /* Display the counter */
+    }
+
+</style>
+<script>
+    function updateGuru(id)
+    {
+    var guru = $(".guru").val();
+    $.ajax({
+        type : 'GET',
+        url : 'http://localhost:8000/walikelas/'+guru+'/'+id,
+            success : function(res) {
+                console.log(res);
+            }
+        })
+    }
+</script>

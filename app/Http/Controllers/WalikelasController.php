@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Guru;
+use App\Jurusan;
+use App\Kelas;
+use App\TahunAkademik;
+use App\Walikelas;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
-class WalikelasController extends Controller
+class WalikelasController extends DashboardBaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,20 @@ class WalikelasController extends Controller
      */
     public function index()
     {
-        //
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+        $tahunakademik = TahunAkademik::where('is_aktif', TRUE)->first();
+        $guru = Guru::all();
+        $walikelas = Walikelas::where('id_tahun_akademik', $tahunakademik->id_tahun_akademik)
+            ->with(['kelas','jurusan', 'tingkatan', 'guru'])->get();
+        // $id = $walikelas->first();
+        // $jurusan = Jurusan::where('kd_jurusan', $id->kd_kelas)->get();
+
+        // $kelas = Kelas::select('nama_jurusan', 'nama_tingkatan')->where('kd_kelas', $walikelas->kd_kelas)->get();
+        // return response()->json($walikelas);
+
+
+        return view('/walikelas/index', compact('sql_menu', 'menu', 'walikelas', 'guru', 'tahunakademik'));
     }
 
     /**
@@ -66,9 +90,9 @@ class WalikelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($guru, $id)
     {
-        //
+        
     }
 
     /**
@@ -81,4 +105,16 @@ class WalikelasController extends Controller
     {
         //
     }
+    
+    public function guru($guru, $id)
+    {
+        $data = Walikelas::where('id_walikelas', $id)
+        ->update([
+            'id_guru' => $guru
+        ]);
+
+        return response()->json($data);
+        // return response()->json('Helo');
+    }
+
 }

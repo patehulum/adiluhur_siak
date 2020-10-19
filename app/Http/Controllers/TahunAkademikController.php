@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Kelas;
 use App\TahunAkademik;
+use App\Walikelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,10 +50,26 @@ class TahunAkademikController extends DashboardBaseController
      */
     public function store(Request $request)
     {
-        TahunAkademik::create([
-            'tahun_akademik' => $request->tahun_akademik,
-            'is_aktif' => $request->is_aktif,
-        ]);
+        // TahunAkademik::create([
+        //     'tahun_akademik' => $request->tahun_akademik,
+        //     'is_aktif' => $request->is_aktif,
+        // ]);
+
+        $store = new TahunAkademik;
+        $store->tahun_akademik = $request->tahun_akademik;
+        $store->is_aktif = $request->is_aktif;
+        $store->save();
+        
+        $kelas = Kelas::all();
+        foreach ($kelas as $k) {
+            Walikelas::create([
+                'id_guru'           => 0,
+                'id_tahun_akademik'	=> $store->id_tahun_akademik,
+                'kd_kelas'		    => $k->kd_kelas,
+                'kd_jurusan'        => $k->kd_jurusan,
+                'kd_tingkatan'        => $k->kd_tingkatan,
+             ]);
+        }
 
         return redirect()->action('TahunAkademikController@index');
     }
