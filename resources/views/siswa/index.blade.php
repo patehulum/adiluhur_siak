@@ -38,11 +38,11 @@
                     {{ session('store') }}
                 </div>
                 @elseif (session('update'))
-                <div class="alert alert-success">
+                <div class="alert alert-info">
                     {{ session('update') }}
                 </div>
                 @elseif (session('delete'))
-                <div class="alert alert-success">
+                <div class="alert alert-danger">
                     {{ session('delete') }}
                 </div>
                 @endif

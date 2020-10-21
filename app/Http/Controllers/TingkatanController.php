@@ -52,7 +52,7 @@ class TingkatanController extends DashboardBaseController
             'nama_tingkatan' => $request->nama_tingkatan
         ]);
 
-        return redirect()->action('TingkatanController@index');
+        return redirect()->action('TingkatanController@index')->with('store', 'Data Tingkatan Kelas Berhasil Ditambahkan');
     }
 
     /**
@@ -97,7 +97,7 @@ class TingkatanController extends DashboardBaseController
                 'nama_tingkatan' => $request->nama_tingkatan,
             ]);
         
-            return redirect()->action('TingkatanController@index');
+            return redirect()->action('TingkatanController@index')->with('update','Data Tingkatan Kelas Berhasil Diupdate');
     }
 
     /**
@@ -110,6 +110,6 @@ class TingkatanController extends DashboardBaseController
     {
         TingkatanKelas::destroy($kd_tingkatan);
 
-        return redirect()->action('TingkatanController@index');
+        return redirect()->action('TingkatanController@index')->with('delete', 'Data Tingkatan Kelas Berhasil Dihapus');
     }
 }

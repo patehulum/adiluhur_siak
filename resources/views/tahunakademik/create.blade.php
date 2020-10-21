@@ -21,7 +21,7 @@ Tambah Data Tahun Akademik
 
                         <div class="col-sm-9">
                             <input type="text" name="tahun_akademik" class="form-control"
-                                placeholder="Masukkan Kode kurikulum">
+                                placeholder="Masukkan Kode kurikulum" required>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@ Tambah Data Tahun Akademik
                         <label class="col-sm-2 control-label">Is Aktif</label>
 
                         <div class="col-sm-9">
-                            <select name="is_aktif" class="form-control">
+                            <select name="is_aktif" class="form-control" required>
                                 <option value="">Pilih Keterangan</option>
                                 <option value="Y">Aktif</option>
                                 <option value="N">Tidak Aktif</option>

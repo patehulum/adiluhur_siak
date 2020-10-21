@@ -60,7 +60,7 @@ class KelasController extends DashboardBaseController
             'kd_jurusan' => $request->kd_jurusan
         ]);
 
-        return redirect()->action('KelasController@index');
+        return redirect()->action('KelasController@index')->with('store', 'Data Kelas Berhasil Ditambahkan');
     }
 
     /**
@@ -108,7 +108,7 @@ class KelasController extends DashboardBaseController
             'kd_jurusan' => $request->kd_jurusan
         ]);
 
-        return redirect()->action('KelasController@index');
+        return redirect()->action('KelasController@index')->with('update', 'Data Kelas Berhasil Diupdate');
     }
 
     /**
@@ -121,7 +121,7 @@ class KelasController extends DashboardBaseController
     {
         Kelas::destroy($kd_kelas);
 
-        return redirect()->action('KelasController@index');
+        return redirect()->action('KelasController@index')->with('delete', 'Data Kelas Berhasil Dihapus');
     }
 
     public function kelas($jurusan){

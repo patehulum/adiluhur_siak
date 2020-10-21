@@ -25,7 +25,7 @@
 
                             <div class="col-sm-9">
                                 <input type="text" value="{{$ruangan->kd_ruangan}}" name="kd_ruangan"
-                                    class="form-control" placeholder="Masukkan Kode Mapel">
+                                    class="form-control" placeholder="Masukkan Kode Mapel" required>
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
 
                             <div class="col-sm-9">
                                 <input type="text" value="{{$ruangan->nama_ruangan}}" name="nama_ruangan"
-                                    class="form-control" placeholder="Masukkan Nama Mapel">
+                                    class="form-control" placeholder="Masukkan Nama Mapel" required>
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
 
                             <div class="col-sm-9">
                                 <input type="text" value="{{$ruangan->kapasitas}}" name="kapasitas" class="form-control"
-                                    placeholder="Masukkan Kapasistas">
+                                    placeholder="Masukkan Kapasistas" required>
                             </div>
                         </div>
 

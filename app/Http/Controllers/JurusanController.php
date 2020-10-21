@@ -52,7 +52,7 @@ class JurusanController extends DashboardBaseController
             'nama_jurusan' =>$request->nama_jurusan,
         ]);
 
-        return redirect()->action('JurusanController@index');
+        return redirect()->action('JurusanController@index')->with('store', 'Data Jurusan Berhasil Ditambahkan');
     }
 
     /**
@@ -96,7 +96,7 @@ class JurusanController extends DashboardBaseController
                 'nama_jurusan' => $request->nama_jurusan,
             ]);
         
-            return redirect()->action('JurusanController@index');
+            return redirect()->action('JurusanController@index')->with('update', 'Data Jurusan Berhasil Diupdate');
     }
 
     /**
@@ -109,6 +109,6 @@ class JurusanController extends DashboardBaseController
     {
         Jurusan::destroy($kd_jurusan);
 
-        return redirect()->action('JurusanController@index');
+        return redirect()->action('JurusanController@index')->with('delete', 'Data Jurusan Berhasil Dihapus');
     }
 }

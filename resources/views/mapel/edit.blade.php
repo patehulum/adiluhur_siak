@@ -34,7 +34,7 @@
 
                             <div class="col-sm-9">
                                 <input type="text" value="{{$mapel->nama_mapel}}" name="nama_mapel" class="form-control"
-                                    placeholder="Masukkan Nama Mapel">
+                                    placeholder="Masukkan Nama Mapel" required>
                             </div>
                         </div>
 

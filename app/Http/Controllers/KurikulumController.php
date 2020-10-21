@@ -52,7 +52,7 @@ class KurikulumController extends DashboardBaseController
             'is_aktif' => $request->is_aktif
         ]);
 
-        return redirect()->action('KurikulumController@index');
+        return redirect()->action('KurikulumController@index')->with('store', 'Data Kurikulum Berhasil Ditambahkan');
     }
 
     /**
@@ -101,7 +101,7 @@ class KurikulumController extends DashboardBaseController
                 'is_aktif' => $request->is_aktif
             ]);
 
-        return redirect()->action('KurikulumController@index');
+        return redirect()->action('KurikulumController@index')->with('update', 'Data Kurikulum Berhasil Diupdate');
     }
 
     /**
@@ -114,6 +114,6 @@ class KurikulumController extends DashboardBaseController
     {
         Kurikulum::destroy($id_kurikulum);
 
-        return redirect()->action('KurikulumController@index');
+        return redirect()->action('KurikulumController@index')->with('delete', 'Data Kurikulum Berhasil Dihapus');
     }
 }

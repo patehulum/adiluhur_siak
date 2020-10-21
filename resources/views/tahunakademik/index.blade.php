@@ -15,7 +15,19 @@ Data Kurikulum |
 
                 <!-- button add -->
                 <a href="/tahunakademik/create"><button class="btn bg-navy btn-flat margin">Tambah Data</button></a>
-
+                @if (session('store'))
+                <div class="alert alert-success">
+                    {{ session('store') }}
+                </div>
+                @elseif (session('update'))
+                <div class="alert alert-info">
+                    {{ session('update') }}
+                </div>
+                @elseif (session('delete'))
+                <div class="alert alert-danger">
+                    {{ session('delete') }}
+                </div>
+                @endif
                 <table id="mytable" class="table table-striped table-bordered table-hover table-full-width dataTable"
                     cellspacing="0" width="100%">
                     <thead>

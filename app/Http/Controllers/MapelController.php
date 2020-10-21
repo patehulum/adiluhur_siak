@@ -54,7 +54,7 @@ class MapelController extends DashboardBaseController
             'nama_mapel' => $request->nama_mapel,
         ]);
 
-        return redirect()->action('MapelController@index');
+        return redirect()->action('MapelController@index')->with('store', 'Data Mata Pelajaran Berhasil Ditambahkan');
     }
 
     /**
@@ -100,7 +100,7 @@ class MapelController extends DashboardBaseController
             ]);
         // dd($request);
 
-        return redirect()->action('MapelController@index');
+        return redirect()->action('MapelController@index')->with('update', 'Data Mata Pelajaran Berhasil Diupdate');
     }
 
     /**
@@ -113,6 +113,6 @@ class MapelController extends DashboardBaseController
     {
         Mapel::destroy($kd_mapel);
 
-        return redirect()->action('MapelController@index');
+        return redirect()->action('MapelController@index')->with('delete', 'Data Mata Pelajaran Berhasil Dihapus');
     }
 }

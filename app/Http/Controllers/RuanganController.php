@@ -53,7 +53,7 @@ class RuanganController extends DashboardBaseController
             'kapasitas' => $request->kapasitas,
         ]);
 
-        return redirect()->action('RuanganController@index');
+        return redirect()->action('RuanganController@index')->with('store', 'Data Ruangan Berhasil Ditambahkan');
     }
 
     /**
@@ -98,7 +98,7 @@ class RuanganController extends DashboardBaseController
                 'kapasitas' => $request->kapasitas,
             ]);
 
-        return redirect()->action('RuanganController@index');
+        return redirect()->action('RuanganController@index')->with('update', 'Data Ruangan Berhasil Diupdate');
     }
 
     /**
@@ -107,8 +107,10 @@ class RuanganController extends DashboardBaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kd_ruangan)
     {
-        //
+        Ruangan::destroy($kd_ruangan);
+
+        return redirect()->action('RuanganController@index')->with('delete', 'Data Ruangan Berhasil Dihapus');
     }
 }

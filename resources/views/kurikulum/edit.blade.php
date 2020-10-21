@@ -24,7 +24,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" value="{{$kurikulum->nama_kurikulum}}" name="nama_kurikulum"
-                                class="form-control" placeholder="Masukkan Kode kurikulum">
+                                class="form-control" placeholder="Masukkan Kode kurikulum" required>
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@
                         <label class="col-sm-2 control-label">Keterangan</label>
 
                         <div class="col-sm-9">
-                            <select name="is_aktif" class="form-control">
+                            <select name="is_aktif" class="form-control" required>
                                 <option value="{{$kurikulum->is_aktif}}">{{$kurikulum->is_aktif}}</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>

@@ -21,7 +21,8 @@ Tambah Data Mata Pelajaran |
                         <label class="col-sm-2 control-label">Kode Mapel</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="kd_mapel" class="form-control" placeholder="Masukkan Kode Mapel">
+                            <input type="text" name="kd_mapel" class="form-control" placeholder="Masukkan Kode Mapel"
+                                required>
                         </div>
                     </div>
 
@@ -29,7 +30,8 @@ Tambah Data Mata Pelajaran |
                         <label class="col-sm-2 control-label">Nama Mapel</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="nama_mapel" class="form-control" placeholder="Masukkan Nama Mapel">
+                            <input type="text" name="nama_mapel" class="form-control" placeholder="Masukkan Nama Mapel"
+                                required>
                         </div>
                     </div>
 

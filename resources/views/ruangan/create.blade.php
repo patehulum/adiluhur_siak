@@ -21,7 +21,8 @@ Tambah Data Ruangan |
                         <label class="col-sm-2 control-label">Kode Ruangan</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="kd_ruangan" class="form-control" placeholder="Masukkan Kode Mapel">
+                            <input type="text" name="kd_ruangan" class="form-control" placeholder="Masukkan Kode Mapel"
+                                required>
                         </div>
                     </div>
 
@@ -30,7 +31,7 @@ Tambah Data Ruangan |
 
                         <div class="col-sm-9">
                             <input type="text" name="nama_ruangan" class="form-control"
-                                placeholder="Masukkan Nama Mapel">
+                                placeholder="Masukkan Nama Mapel" required>
                         </div>
                     </div>
 
@@ -38,7 +39,8 @@ Tambah Data Ruangan |
                         <label class="col-sm-2 control-label">Kapasitas</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="kapasitas" class="form-control" placeholder="Masukkan Kapasistas">
+                            <input type="text" name="kapasitas" class="form-control" placeholder="Masukkan Kapasistas"
+                                required>
                         </div>
                     </div>
 

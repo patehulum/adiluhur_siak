@@ -1,7 +1,5 @@
 @extends('layouts/navbar')
 @section('title' , 'Tambah Data Jurusan | ')
-
-@endsection
 @section('content')
 <div class="row">
     <div class="col-xs-12">
@@ -22,7 +20,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="kd_jurusan" class="form-control"
-                                placeholder="Masukkan Kode jurusan">
+                                placeholder="Masukkan Kode jurusan" required>
                         </div>
                     </div>
 
@@ -31,7 +29,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="nama_jurusan" class="form-control"
-                                placeholder="Masukkan Nama jurusan">
+                                placeholder="Masukkan Nama jurusan" required>
                         </div>
                     </div>
 

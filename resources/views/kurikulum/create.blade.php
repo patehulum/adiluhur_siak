@@ -22,7 +22,7 @@ Tambah Data Kurikulum |
 
                         <div class="col-sm-9">
                             <input type="text" name="nama_kurikulum" class="form-control"
-                                placeholder="Masukkan Kode kurikulum">
+                                placeholder="Masukkan Kode kurikulum" required>
                         </div>
                     </div>
 
@@ -30,7 +30,7 @@ Tambah Data Kurikulum |
                         <label class="col-sm-2 control-label">Keterangan</label>
 
                         <div class="col-sm-9">
-                            <select name="is_aktif" class="form-control">
+                            <select name="is_aktif" class="form-control" required>
                                 <option value="">Pilih Keterangan</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>

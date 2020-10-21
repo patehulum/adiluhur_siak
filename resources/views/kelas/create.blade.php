@@ -19,7 +19,8 @@
                         <label class="col-sm-2 control-label">Kode Kelas</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="kd_kelas" class="form-control" placeholder="Masukkan Kode Kelas">
+                            <input type="text" required name="kd_kelas" class="form-control"
+                                placeholder="Masukkan Kode Kelas">
                         </div>
                     </div>
 
@@ -27,7 +28,8 @@
                         <label class="col-sm-2 control-label">Nama Kelas</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="nama_kelas" class="form-control" placeholder="Masukkan Nama Kelas">
+                            <input type="text" required name="nama_kelas" class="form-control"
+                                placeholder="Masukkan Nama Kelas">
                         </div>
                     </div>
 
@@ -35,8 +37,8 @@
                         <label class="col-sm-2 control-label">Tingkatan</label>
 
                         <div class="col-sm-5">
-                            <select name="kd_tingkatan" class="form-control">
-                                <option>Pilih Tingkatan</option>
+                            <select required name="kd_tingkatan" class="form-control">
+                                <option value="">Pilih Tingkatan</option>
                                 @foreach ($tingkatan as $t)
                                 <option value="{{$t->kd_tingkatan}}">{{$t->nama_tingkatan}}
                                 </option>
@@ -49,8 +51,8 @@
                         <label class="col-sm-2 control-label">Jurusan</label>
 
                         <div class="col-sm-5">
-                            <select name="kd_jurusan" class="form-control">
-                                <option>Pilih Jurusan</option>
+                            <select required name="kd_jurusan" class="form-control">
+                                <option value="">Pilih Jurusan</option>
                                 @foreach ($jurusan as $j)
                                 <option value="{{$j->kd_jurusan}}">{{$j->nama_jurusan}}
                                 </option>

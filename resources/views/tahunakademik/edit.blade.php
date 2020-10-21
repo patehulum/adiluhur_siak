@@ -25,7 +25,7 @@
 
                             <div class="col-sm-9">
                                 <input type="text" value="{{$tahun->tahun_akademik}}" name="tahun_akademik"
-                                    class="form-control">
+                                    class="form-control" required>
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                             <label class="col-sm-2 control-label">Semester</label>
 
                             <div class="col-sm-9">
-                                <select name="semester" class="form-control">
+                                <select name="semester" class="form-control" required>
                                     @if ($tahun->semester != null)
                                     <option value="{{$tahun->semester}}">{{$tahun->semester}}</option>
                                     @else

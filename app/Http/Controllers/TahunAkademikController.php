@@ -50,10 +50,6 @@ class TahunAkademikController extends DashboardBaseController
      */
     public function store(Request $request)
     {
-        // TahunAkademik::create([
-        //     'tahun_akademik' => $request->tahun_akademik,
-        //     'is_aktif' => $request->is_aktif,
-        // ]);
 
         $store = new TahunAkademik;
         $store->tahun_akademik = $request->tahun_akademik;
@@ -71,7 +67,7 @@ class TahunAkademikController extends DashboardBaseController
              ]);
         }
 
-        return redirect()->action('TahunAkademikController@index');
+        return redirect()->action('TahunAkademikController@index')->with('store', 'Data Tahun Akademik Berhasil Ditambahakan');
     }
 
     /**
@@ -115,7 +111,7 @@ class TahunAkademikController extends DashboardBaseController
                 'semester' => $request->semester,
             ]);
 
-        return redirect()->action('TahunAkademikController@index');
+        return redirect()->action('TahunAkademikController@index')->with('update', 'Data Tahun Akdemik Berhasil Diupdate');
     }
 
     /**
@@ -128,7 +124,7 @@ class TahunAkademikController extends DashboardBaseController
     {
         TahunAkademik::destroy($id_tahun_akademik);
 
-        return redirect()->action('TahunAkademikController@index');
+        return redirect()->action('TahunAkademikController@index')->with('delete', 'Data Tahun Akademik Berhasil Dihapus');
     }
 
     public function aktif($id_tahun_akademik)

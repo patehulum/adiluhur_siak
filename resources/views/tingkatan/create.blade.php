@@ -20,7 +20,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="kd_tingkatan" class="form-control"
-                                placeholder="Masukkan Kode Tingkatan">
+                                placeholder="Masukkan Kode Tingkatan" required>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="nama_tingkatan" class="form-control"
-                                placeholder="Masukkan Nama Tingkatan">
+                                placeholder="Masukkan Nama Tingkatan" required>
                         </div>
                     </div>
 

@@ -34,7 +34,7 @@
 
                             <div class="col-sm-9">
                                 <input type="text" value="{{$tingkatan->nama_tingkatan}}" name="nama_tingkatan"
-                                    class="form-control" placeholder="Masukkan Nama Tingkatan Kelas">
+                                    class="form-control" placeholder="Masukkan Nama Tingkatan Kelas" required>
                             </div>
                         </div>
 
