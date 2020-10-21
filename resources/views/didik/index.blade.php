@@ -12,29 +12,29 @@
             <div class="box-body">
                 <table class="table table-bordered">
                     <tr>
-                        <td>Jurusan</td>
-                        <td>
+                        <th>Jurusan</th>
+                        <th>
                             <select onchange="handleChange()" name="kd_jurusan" class="form-control"
                                 id="filter_jurusan">
                                 @foreach ($jurusan as $j)
                                 <option value="{{$j->kd_jurusan}}">{{$j->nama_jurusan}}</option>
                                 @endforeach
                             </select>
-                        </td>
+                        </th>
 
                     </tr>
                     <tr>
-                        <td>Kelas</td>
-                        <td>
+                        <th>Kelas</th>
+                        <th>
                             <select onchange="loadSiswa()" class="form-control kelas" id="cbkelas">
                                 <option></option>
-                        </td>
+                        </th>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <th colspan="2">
                             <button type="submit" name="export_jadwal" class="btn btn-success btn-sm"><i
                                     class="fa fa-print" aria-hidden="true"></i> Export Data</button>
-                        </td>
+                        </th>
                     </tr>
                 </table>
 

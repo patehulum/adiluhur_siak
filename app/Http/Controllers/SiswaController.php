@@ -55,31 +55,15 @@ class SiswaController extends DashboardBaseController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        
 
-        Siswa::create([
-            'nama'          => $request->nama,
-            'tempat_lahir'  => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'kd_agama'      => $request->kd_agama,
-            'alamat_siswa'  => $request->alamat_siswa,
-            'no_telp_siswa' => $request->no_telp_siswa,
-            'sekolah_asal'  => $request->sekolah_asal,
-            'no_ijazah'     => $request->no_ijazah,
-            'nama_ayah'     => $request->nama_ayah,
-            'nama_ibu'      => $request->nama_ibu,
-            'alamat_ortu'   => $request->alamat_ortu,
-            'no_telp_ortu'  => $request->no_telp_ortu,
-            'foto'          => Storage::put('Siswa', $request->foto),
-            'kd_kelas'      => $request->kd_kelas,
-            'status_siswa'  => $request->status_siswa,
-            'email'         => $request->email,
-            'password'      => $request->password,
-        ]);
+        $siswa = Siswa::create($this->validateRequest());
+        
+        $this->storeImage($siswa);
+        
 
-
-        return redirect()->action('SiswaController@index');
+        return redirect()->action('SiswaController@index')->with('store', 'Data Siswa Berhasil Ditambahkan');
     }
 
     /**
@@ -124,29 +108,35 @@ class SiswaController extends DashboardBaseController
     {
         // dd($request);
         // $foto = $request->file('foto')->store('Siswa');
-        Siswa::where('nis', $nis)
-            ->update([
-                'nama' => $request->nama,
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'kd_agama' => $request->kd_agama,
-                'alamat_siswa' => $request->alamat_siswa,
-                'no_telp_siswa' => $request->no_telp_siswa,
-                'sekolah_asal' => $request->sekolah_asal,
-                'no_ijazah' => $request->no_ijazah,
-                'nama_ayah' => $request->nama_ayah,
-                'nama_ibu' => $request->nama_ibu,
-                'alamat_ortu' => $request->alamat_ortu,
-                'no_telp_ortu' => $request->no_telp_ortu,
-                'foto' => Storage::putFile('Siswa', $request->file('file')),
-                'kd_kelas' => $request->kd_kelas,
-                'status_siswa' => $request->status_siswa,
-                'email' => $request->email,
-                'password' => $request->password,
-            ]);
+        // Siswa::where('nis', $nis)
+        //     ->update([
+        //         'nama' => $request->nama,
+        //         'tempat_lahir' => $request->tempat_lahir,
+        //         'tanggal_lahir' => $request->tanggal_lahir,
+        //         'jenis_kelamin' => $request->jenis_kelamin,
+        //         'kd_agama' => $request->kd_agama,
+        //         'alamat_siswa' => $request->alamat_siswa,
+        //         'no_telp_siswa' => $request->no_telp_siswa,
+        //         'sekolah_asal' => $request->sekolah_asal,
+        //         'no_ijazah' => $request->no_ijazah,
+        //         'nama_ayah' => $request->nama_ayah,
+        //         'nama_ibu' => $request->nama_ibu,
+        //         'alamat_ortu' => $request->alamat_ortu,
+        //         'no_telp_ortu' => $request->no_telp_ortu,
+        //         'foto' => Storage::putFile('Siswa', $request->file('file')),
+        //         // 'foto' => $foto,
+        //         'kd_kelas' => $request->kd_kelas,
+        //         'status_siswa' => $request->status_siswa,
+        //         'email' => $request->email,
+        //         'password' => $request->password,
+        //     ]);
+        // dd($siswa);
+            
+        $siswa = Siswa::where('nis', $nis);
+        $siswa->update($this->validateRequest());
+        $this->storeImage($siswa);
 
-        return redirect()->action('SiswaController@index');
+        return redirect()->action('SiswaController@index')->with('update', 'Data Siswa Berhasil Diupdate');
     }
 
     /**
@@ -178,4 +168,43 @@ class SiswaController extends DashboardBaseController
 
         return response()->json('Helo');
     }
+
+    public function validateRequest()
+    {
+        return tap(request()->validate([
+            'nama'          => 'required',
+            'tempat_lahir'  => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'kd_agama'      => 'required',
+            'alamat_siswa'  => 'required',
+            'no_telp_siswa' => 'required',
+            'sekolah_asal'  => 'required',
+            'no_ijazah'     => 'required',
+            'nama_ayah'     => 'required',
+            'nama_ibu'      => 'required',
+            'alamat_ortu'   => 'required',
+            'no_telp_ortu'  => 'required',
+            'kd_kelas'      => 'required',
+            'status_siswa'  => 'required',
+            'email'         => 'required',
+            'password'      => 'required',
+        ]), function(){
+            if (request()->hasFile('foto')){
+            request()->validate([
+                'foto' => 'required|image',
+            ]);
+        }
+        });
+    }
+
+    public function storeImage($siswa)
+    {
+        if(request()->has('foto')){
+            $siswa->update([
+                'foto' => Storage::put('Siswa', request()->foto),
+            ]);
+        }
+    }
+
 }

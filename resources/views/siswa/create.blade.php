@@ -8,6 +8,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Form Tambah Siswa</h3>
             </div>
+
             <!-- /.box-header -->
             <!-- form start -->
 
@@ -27,7 +28,8 @@
                         <label class="col-sm-2 control-label">Nama</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Lengkap">
+                            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Lengkap"
+                                required>
                         </div>
                     </div>
 
@@ -35,12 +37,14 @@
                         <label class="col-sm-2 control-label">Tempat, Tgl Lahir</label>
 
                         <div class="col-sm-5">
-                            <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                            <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir"
+                                required>
                         </div>
 
                         <div class="col-sm-2">
                             <input type='text' class="form-control" id='datepicker'
-                                placeholder='Tahun / Bulan / Tanggal' name="tanggal_lahir" style='width: 300px;'>
+                                placeholder='Tahun / Bulan / Tanggal' name="tanggal_lahir" style='width: 300px;'
+                                required>
                         </div>
                     </div>
 
@@ -48,7 +52,7 @@
                         <label class="col-sm-2 control-label">Jenis Kelamin</label>
 
                         <div class="col-sm-5">
-                            <select name="jenis_kelamin" class="form-control">
+                            <select name="jenis_kelamin" class="form-control" required>
                                 <option value="0">Pilih Jenis Kelamin</option>
                                 <option value="Laki-Laki">Laki-Laki</option>
                                 <option value="Perempuan">Perempuan</option>
@@ -60,7 +64,7 @@
                         <label class="col-sm-2 control-label">Agama</label>
 
                         <div class="col-sm-5">
-                            <select name="kd_agama" class="form-control">
+                            <select name="kd_agama" class="form-control" required>
                                 <option value="1">ISLAM</option>
                                 <option value="2">KRISTEN/ PROTESTAN</option>
                                 <option value="3">KATHOLIK</option>
@@ -76,7 +80,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="alamat_siswa" class="form-control"
-                                placeholder="Masukkan Alamat Siswa">
+                                placeholder="Masukkan Alamat Siswa" required>
                         </div>
                     </div>
 
@@ -85,7 +89,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="no_telp_siswa" class="form-control"
-                                placeholder="Masukkan Nomor Telp Siswa">
+                                placeholder="Masukkan Nomor Telp Siswa" required>
                         </div>
                     </div>
 
@@ -94,7 +98,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="sekolah_asal" class="form-control"
-                                placeholder="Masukkan Nama Sekolah Asal">
+                                placeholder="Masukkan Nama Sekolah Asal" required>
                         </div>
                     </div>
 
@@ -102,8 +106,8 @@
                         <label class="col-sm-2 control-label">Nomor Ijazah</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="no_ijazah" class="form-control"
-                                placeholder="Masukkan Nomor Ijazah">
+                            <input type="text" name="no_ijazah" class="form-control" placeholder="Masukkan Nomor Ijazah"
+                                required>
                         </div>
                     </div>
 
@@ -113,7 +117,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="nama_ayah" class="form-control"
-                                placeholder="Masukkan Nama Ayah Siswa">
+                                placeholder="Masukkan Nama Ayah Siswa" required>
                         </div>
                     </div>
 
@@ -122,7 +126,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="nama_ibu" class="form-control"
-                                placeholder="Masukkan Nama Ibu Siswa">
+                                placeholder="Masukkan Nama Ibu Siswa" required>
                         </div>
                     </div>
 
@@ -131,7 +135,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="alamat_ortu" class="form-control"
-                                placeholder="Masukkan Alamat Orang Tua ">
+                                placeholder="Masukkan Alamat Orang Tua " required>
                         </div>
                     </div>
 
@@ -141,7 +145,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="no_telp_ortu" class="form-control"
-                                placeholder="Masukkan Nomor Telp Orang Tua ">
+                                placeholder="Masukkan Nomor Telp Orang Tua " required>
                         </div>
                     </div>
 
@@ -157,7 +161,7 @@
                         <label class="col-sm-2 control-label">Kelas Awal</label>
 
                         <div class="col-sm-5">
-                            <select name="kd_kelas" class="form-control">
+                            <select name="kd_kelas" class="form-control" required>
                                 <option value="IPAX1">X IPA 1</option>
                                 <option value="IPAX2">X IPA 2</option>
                                 <option value="IPAXI1">XI IPA 1</option>
@@ -175,7 +179,7 @@
                         <label class="col-sm-2 control-label">Status Siswa</label>
 
                         <div class="col-sm-5">
-                            <select name="status_siswa" class="form-control">
+                            <select name="status_siswa" class="form-control" required>
                                 <option value="0">Pilih Status</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Keluar">Keluar</option>
@@ -189,7 +193,8 @@
                         <label class="col-sm-2 control-label">Email</label>
 
                         <div class="col-sm-9">
-                            <input type="email" name="email" class="form-control" placeholder="Masukkan Username">
+                            <input type="email" name="email" class="form-control" placeholder="Masukkan Username"
+                                required>
                         </div>
                     </div>
 
@@ -198,7 +203,8 @@
                         <label class="col-sm-2 control-label">Password</label>
 
                         <div class="col-sm-9">
-                            <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
+                            <input type="password" name="password" class="form-control" placeholder="Masukkan Password"
+                                required>
                         </div>
                     </div>
 

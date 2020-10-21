@@ -1,8 +1,4 @@
 @extends('layouts/navbar')
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
-</script>
-<link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @section('title', 'Data Siswa | ')
 @section('content')
 <div class="row">
@@ -17,27 +13,27 @@
 
                 <table class="table table-bordered">
                     <tr>
-                        <td>Jurusan</td>
-                        <td>
+                        <th>Jurusan</th>
+                        <th>
                             <select onchange="getKelas()" name="kd_tingkatan" class="form-control" id="filter_jurusan">
                                 @foreach ($jurusan as $j)
                                 <option value="{{$j->kd_jurusan}}">{{$j->nama_jurusan}}</option>
                                 @endforeach
                             </select>
-                        </td>
+                        </th>
 
                     </tr>
                     <tr>
-                        <td>Kelas</td>
-                        <td>
+                        <th>Kelas</th>
+                        <th>
                             <select name="kd_jurusan" id="kelas" class="form-control kelas"></select>
-                        </td>
+                        </th>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <th colspan="2">
                             <button type="submit" name="export_jadwal" class="btn btn-success btn-sm"><i
                                     class="fa fa-print" aria-hidden="true"></i> Export Data</button>
-                        </td>
+                        </th>
                     </tr>
                 </table>
 

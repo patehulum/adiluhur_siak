@@ -33,7 +33,13 @@
                         </div>
                     </div>
                 </div>
-
+                @if (session('store'))
+                <div class="alert alert-success">
+                    {{ session('store') }}
+                </div>
+                @elseif (session('update'))
+                {{ session('update') }}
+                @endif
                 <table id="mytable" class="table table-striped table-bordered table-hover table-full-width dataTable"
                     cellspacing="0" width="100%">
                     <thead>

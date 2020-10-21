@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\LevelUser;
+use App\Menu;
 use App\User;
+use App\UserRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -72,7 +74,7 @@ class UserController extends DashboardBaseController
     {
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
-        $user = User::all();
+        $user = LevelUser::all();
 
         return view('/user/rule', compact('sql_menu', 'menu', 'user'));
     }
@@ -85,12 +87,7 @@ class UserController extends DashboardBaseController
      */
     public function edit($id)
     {
-         $menu = $this->view[0]->menu;
-        $sql_menu = $this->view[0]->sql_menu;
-        $user = User::where('id', $id)->firstOrFail();
-        $level = LevelUser::all();
-
-        return view('/user/edit', compact('sql_menu', 'menu', 'user','level'));
+        
     }
 
     /**
@@ -132,8 +129,26 @@ class UserController extends DashboardBaseController
     {
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
-        $user = User::all();
+        $level = LevelUser::all();
+        $modul = Menu::all();
+        $l = LevelUser::select('id_level_user')->get();
+        $m = Menu::select('id')->get();
+        $check = UserRule::where([
+            ['id_level_user', $l],
+            ['id_menu', $m],
+        ])->get();
+        $checked = $check->count();
 
-        return view('/user/rule', compact('sql_menu', 'menu', 'user'));
+        // $check = UserRule::where([
+        //     ['id_level_user', $l],
+        //     ['id_menu', $m],
+        // ])->get();
+
+        return view('/user/rule', compact('sql_menu', 'menu', 'level', 'modul', 'check'));
+    }
+
+    public function level($level)
+    {
+        return response()->json('Helo');
     }
 }

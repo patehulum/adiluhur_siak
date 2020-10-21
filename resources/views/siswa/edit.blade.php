@@ -165,7 +165,7 @@
                             <div class="col-sm-5">
                                 <img src="{{ asset('storage/'.$siswa->foto) }}" width="100px" height="100px"
                                     style="margin-bottom: 10px">
-                                <input type="file" name="foto">
+                                <input type="file" name="foto" value="">
                             </div>
                         </div>
 

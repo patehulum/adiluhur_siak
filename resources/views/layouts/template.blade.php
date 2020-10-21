@@ -45,24 +45,7 @@
 
 
         <!-- Modal -->
-        <style>
-            body {
-                counter-reset: Serial;
-                /* Set the Serial counter to 0 */
-            }
 
-            table {
-                border-collapse: separate;
-            }
-
-            tr td:first-child:before {
-                counter-increment: Serial;
-                /* Increment the Serial counter */
-                content: counter(Serial);
-                /* Display the counter */
-            }
-
-        </style>
     </head>
 
     @guest

@@ -17,11 +17,16 @@ Rule
 
                 <table class="table table-bordered">
                     <tr>
-                        <td>Level User</td>
-                        {{-- <td>
-                            <?php echo cmb_dinamis('level_user', 'tbl_level_user', 'nama_level', 'id_level_user', null, "id='filter_level' onChange='loadData()'") 
-                                ?>
-                        </td> --}}
+                        <th>Level User</th>
+                        <th>
+                            <select name="level_user" class="form-control" id="filter_level" onchange="loadData()">
+                                <option value="">Pilih Level User</option>
+                                @foreach ($level as $l)
+                                <option value="{{$l->id_level_user}}">{{$l->nama_level}}</option>
+                                @endforeach
+                            </select>
+                        </th>
+
                     </tr>
                 </table>
 
@@ -43,7 +48,35 @@ Rule
             <!-- /.box-header -->
             <div class="box-body">
 
-                <div id="table-module"></div>
+                <div id="table-module">
+                    <table id="mytable"
+                        class="table table-striped table-bordered table-hover table-full-width dataTable"
+                        cellspacing="0" width="100%">
+                        <thead>
+                            <th>NO</th>
+                            <th>NAMA MODUL</th>
+                            <th>LINK</th>
+                            <th>HAK AKSES</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($modul as $m)
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input id="id_menu" type="hidden" name="id_menu" value="">
+                                    {{$m->nama_menu}}
+                                </td>
+                                <td>{{$m->link}}</td>
+                                <td class="text-center">
+                                    <input type="checkbox" onclick="addRule({{$m->id}})" @if (count($check)> 0)
+                                    checked
+                                    @endif>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
             <!-- /.box-body -->
@@ -53,46 +86,20 @@ Rule
     <!-- /.col -->
 
 </div>
-<!-- /.row -->
-
-<!-- punya lama -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.0/jquery.dataTables.js"></script> -->
-<!-- <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.js"></script> -->
-
-<!-- baru tapi cdn -->
-<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"> -->
-
 @endsection
-<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}">
-</script>
-<link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-
-<!-- siswa_aktif() -> untuk menampilkan view peserta didik ->terletak di controller Siswa -->
-<!-- combobox_kelas() -> untuk menampilkan data kelas sesuai jurusan yang dipilih -> terletak di controller Kelas -->
-<!-- loadDataSiswa() -> untuk menampilkan data siswa nim dan nama sesuai kode_kelas yang dipilih di filter, lalu ditampilkan ke div id = kelas yang bedada di view/siswa_aktif -> terletak di controller Siswa -->
-
-<script type="text/javascript">
-    $(document).ready(function(){
-            loadData();
-        });
-</script>
-
-<script type="text/javascript">
+<script>
     // function loadData digunakan untuk menampilkan table yang ada di function module
         function loadData()
         {
-            var level = $("#filter_level").val();
-            $.ajax({
-                type    : 'GET',
-                url     : '<?php echo base_url() ?>user/module',
-                data    : 'level_user='+level,
-                success : function(html) {
-                    $("#table-module").html(html);
-                }
-            })
+        var level = $("#filter_level").val();
+        
+        $.ajax({
+            type : 'GET',
+            url : 'http://localhost:8000/user/rule/'+level,
+            success : function(res) {
+                console.log(res);
+            }
+        })
         }
     
         function addRule(id_modul)
@@ -100,10 +107,9 @@ Rule
             var level = $("#filter_level").val();
             $.ajax({
                 type    : 'GET',
-                url     : '<?php echo base_url() ?>user/add_rule',
+                url     : '',
                 data    : 'level_user='+level+'&id_modul='+id_modul,
-                success : function(html) {
-                    //loadData();
+                success : function(html) 
                     alert("Sukses Merubah Hak Akses");
                 }
             })
