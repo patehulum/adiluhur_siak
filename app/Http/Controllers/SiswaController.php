@@ -106,32 +106,6 @@ class SiswaController extends DashboardBaseController
      */
     public function update(Request $request, $nis)
     {
-        // dd($request);
-        // $foto = $request->file('foto')->store('Siswa');
-        // Siswa::where('nis', $nis)
-        //     ->update([
-        //         'nama' => $request->nama,
-        //         'tempat_lahir' => $request->tempat_lahir,
-        //         'tanggal_lahir' => $request->tanggal_lahir,
-        //         'jenis_kelamin' => $request->jenis_kelamin,
-        //         'kd_agama' => $request->kd_agama,
-        //         'alamat_siswa' => $request->alamat_siswa,
-        //         'no_telp_siswa' => $request->no_telp_siswa,
-        //         'sekolah_asal' => $request->sekolah_asal,
-        //         'no_ijazah' => $request->no_ijazah,
-        //         'nama_ayah' => $request->nama_ayah,
-        //         'nama_ibu' => $request->nama_ibu,
-        //         'alamat_ortu' => $request->alamat_ortu,
-        //         'no_telp_ortu' => $request->no_telp_ortu,
-        //         'foto' => Storage::putFile('Siswa', $request->file('file')),
-        //         // 'foto' => $foto,
-        //         'kd_kelas' => $request->kd_kelas,
-        //         'status_siswa' => $request->status_siswa,
-        //         'email' => $request->email,
-        //         'password' => $request->password,
-        //     ]);
-        // dd($siswa);
-            
         $siswa = Siswa::where('nis', $nis);
         $siswa->update($this->validateRequest());
         $this->storeImage($siswa);

@@ -48,24 +48,28 @@ class GuruController extends DashboardBaseController
      */
     public function store(Request $request)
     {
-        Guru::create([
-            'nuptk' => $request->nuptk,
-            'nama_guru' => $request->nama_guru,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat_guru' => $request->alamat_guru,
-            'status' => $request->status,
-            'pendidikan_terakhir' => $request->pendidikan_terakhir,
-            'tahun' => $request->tahun,
-            'no_telp' => $request->no_telp,
-            'foto' => Storage::put('Guru', $request->foto),
-            'status' => $request->status,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
+        // Guru::create([
+        //     'nuptk' => $request->nuptk,
+        //     'nama_guru' => $request->nama_guru,
+        //     'tempat_lahir' => $request->tempat_lahir,
+        //     'tanggal_lahir' => $request->tanggal_lahir,
+        //     'jenis_kelamin' => $request->jenis_kelamin,
+        //     'alamat_guru' => $request->alamat_guru,
+        //     'status' => $request->status,
+        //     'pendidikan_terakhir' => $request->pendidikan_terakhir,
+        //     'tahun' => $request->tahun,
+        //     'no_telp' => $request->no_telp,
+        //     'foto' => Storage::put('Guru', $request->foto),
+        //     'status' => $request->status,
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        // ]);
 
-        return redirect()->action('GuruController@index');
+        $guru = Guru::create($this->validateRequest());
+        
+        $this->storeImage($guru);
+
+        return redirect()->action('GuruController@index')->with('store', 'Data Guru Berhasil Ditambahkan');
     }
 
     /**
@@ -108,25 +112,29 @@ class GuruController extends DashboardBaseController
      */
     public function update(Request $request, $id_guru)
     {
-        Guru::where('id_guru', $id_guru)
-        ->update([
-            'nuptk' => $request->nuptk,
-            'nama_guru' => $request->nama_guru,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat_guru' => $request->alamat_guru,
-            'status' => $request->status,
-            'pendidikan_terakhir' => $request->pendidikan_terakhir,
-            'tahun' => $request->tahun,
-            'no_telp' => $request->no_telp,
-            'foto' => Storage::put('Guru', $request->foto),
-            'status' => $request->status,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
+        // Guru::where('id_guru', $id_guru)
+        // ->update([
+        //     'nuptk' => $request->nuptk,
+        //     'nama_guru' => $request->nama_guru,
+        //     'tempat_lahir' => $request->tempat_lahir,
+        //     'tanggal_lahir' => $request->tanggal_lahir,
+        //     'jenis_kelamin' => $request->jenis_kelamin,
+        //     'alamat_guru' => $request->alamat_guru,
+        //     'status' => $request->status,
+        //     'pendidikan_terakhir' => $request->pendidikan_terakhir,
+        //     'tahun' => $request->tahun,
+        //     'no_telp' => $request->no_telp,
+        //     'foto' => Storage::put('Guru', $request->foto),
+        //     'status' => $request->status,
+        //     'email' => $request->email,
+        //     'password' => $request->password,
+        // ]);
 
-        return redirect()->action('GuruController@index');
+        $guru = Guru::where('id_guru', $id_guru);
+        $guru->update($this->validateRequest());
+        $this->storeImage($guru);
+
+        return redirect()->action('GuruController@index')->with('update', 'Data Guru Berhasil Diupdate');
     }
 
     /**
@@ -140,5 +148,39 @@ class GuruController extends DashboardBaseController
         Guru::destroy($id_guru);
 
         return redirect()->action('GuruController@index');
+    }
+
+    public function validateRequest()
+    {
+        return tap(request()->validate([
+            'nuptk'                 => 'required',
+            'nama_guru'             => 'required',
+            'tempat_lahir'          => 'required',
+            'tanggal_lahir'         => 'required',
+            'jenis_kelamin'         => 'required',
+            'alamat_guru'           => 'required',
+            'status'                => 'required',
+            'pendidikan_terakhir'   => 'required',
+            'tahun'                 => 'required',
+            'no_telp'               => 'required',
+            'status'                => 'required',
+            'email'                 => 'required',
+            'password'              => 'required',
+        ]), function(){
+            if (request()->hasFile('foto')){
+            request()->validate([
+                'foto' => 'required|image',
+            ]);
+        }
+        });
+    }
+
+    public function storeImage($guru)
+    {
+        if(request()->has('foto')){
+            $guru->update([
+                'foto' => Storage::put('Guru', request()->foto),
+            ]);
+        }
     }
 }

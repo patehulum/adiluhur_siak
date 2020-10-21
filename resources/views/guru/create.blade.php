@@ -20,7 +20,7 @@
                         <label class="col-sm-2 control-label">NUPTK</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="nuptk" class="form-control" placeholder="Masukan NUPTK">
+                            <input type="text" name="nuptk" class="form-control" placeholder="Masukan NUPTK" required>
                         </div>
                     </div>
 
@@ -28,7 +28,8 @@
                         <label class="col-sm-2 control-label">Nama</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="nama_guru" class="form-control" placeholder="Masukan Nama Lengkap">
+                            <input type="text" name="nama_guru" class="form-control" placeholder="Masukan Nama Lengkap"
+                                required>
                         </div>
                     </div>
 
@@ -36,7 +37,7 @@
                         <label class="col-sm-2 control-label">Jenis Kelamin</label>
 
                         <div class="col-sm-5">
-                            <select name="jenis_kelamin" class="form-control">
+                            <select name="jenis_kelamin" class="form-control" required>
                                 <option value="0">Pilih Jenis Kelamin</option>
                                 <option value="P">Laki-Laki</option>
                                 <option value="W">Perempuan</option>
@@ -48,12 +49,14 @@
                         <label class="col-sm-2 control-label">Tempat, Tgl Lahir</label>
 
                         <div class="col-sm-5">
-                            <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                            <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir"
+                                required>
                         </div>
 
                         <div class="col-sm-2">
                             <input type='text' class="form-control" id='datepicker'
-                                placeholder='Tahun / Bulan / Tanggal' name="tanggal_lahir" style='width: 300px;'>
+                                placeholder='Tahun / Bulan / Tanggal' name="tanggal_lahir" style='width: 300px;'
+                                required>
                         </div>
                     </div>
 
@@ -61,7 +64,8 @@
                         <label class="col-sm-2 control-label">Alamat</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="alamat_guru" class="form-control" placeholder="Masukkan Alamat">
+                            <input type="text" name="alamat_guru" class="form-control" placeholder="Masukkan Alamat"
+                                required>
                         </div>
                     </div>
 
@@ -70,7 +74,7 @@
 
                         <div class="col-sm-9">
                             <input type="text" name="pendidikan_terakhir" class="form-control"
-                                placeholder="Masukkan Pendidikan Terakhir">
+                                placeholder="Masukkan Pendidikan Terakhir" required>
                         </div>
                         {{-- <div class="col-sm-5">
                             <select name="pendidikan_terakhir" class="form-control">
@@ -89,7 +93,7 @@
                         <label class="col-sm-2 control-label">Bekerja Sejak Tahun</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="tahun" class="form-control" placeholder="Masukkan Tahun">
+                            <input type="text" name="tahun" class="form-control" placeholder="Masukkan Tahun" required>
                         </div>
                         {{-- <div class="col-sm-5">
                             <select name="pendidikan_terakhir" class="form-control">
@@ -112,7 +116,8 @@
                         <label class="col-sm-2 control-label">Nomor Telepon</label>
 
                         <div class="col-sm-9">
-                            <input type="text" name="no_telp" class="form-control" placeholder="Masukkan Nomor Telepon">
+                            <input type="text" name="no_telp" class="form-control" placeholder="Masukkan Nomor Telepon"
+                                required>
                         </div>
                     </div>
 
@@ -128,7 +133,7 @@
                         <label class="col-sm-2 control-label">Status</label>
 
                         <div class="col-sm-5">
-                            <select name="status" class="form-control">
+                            <select name="status" class="form-control" required>
                                 <option value="0">Pilih Status</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Keluar">Keluar</option>
@@ -141,7 +146,7 @@
                         <label class="col-sm-2 control-label">Email</label>
 
                         <div class="col-sm-9">
-                            <input type="email" name="email" class="form-control" placeholder="Masukkan Email">
+                            <input type="email" name="email" class="form-control" placeholder="Masukkan Email" required>
                         </div>
                     </div>
 
@@ -149,7 +154,8 @@
                         <label class="col-sm-2 control-label">Password</label>
 
                         <div class="col-sm-9">
-                            <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
+                            <input type="password" name="password" class="form-control" placeholder="Masukkan Password"
+                                required>
                         </div>
                     </div>
 
@@ -186,8 +192,8 @@
      
       $('#datepicker').datepicker({
         format: "yyyy-mm-dd",
-        startDate: new Date('2000-1-1'),
-        endDate: new Date('2006-12-31')
+        startDate: new Date('1980-1-1'),
+        endDate: new Date('1995-12-31')
       });
     
     });
