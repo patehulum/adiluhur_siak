@@ -31,10 +31,7 @@ class HomeController extends DashboardBaseController
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-
-        
-
+    {   
         $users = User::select('id')->count();
         $guru = Guru::select('id_guru')->count();
         $siswa = Siswa::select('nis')->count();

@@ -8,7 +8,7 @@
         <div class="small-box bg-aqua">
             <div class="inner">
                 <h3>{{ $users }}</h3>
-
+                {{Auth::id()}}
                 <p>Pengguna Sistem</p>
             </div>
             <div class="icon">
