@@ -13,11 +13,14 @@ class DashboardBaseController extends Controller
 {
     public $view;
     public function __construct() {
-
+        if (Auth::user()==null) {
+            return view('auth/login');
+        }else {
+        //     $this->middleware('auth');
+        // dd(Auth::user());
         //Tambahkan beberapa validasi pada Kernel
-        $user=Auth::user()->id_level_user;
         $menu = new Menu();
-        $collection = UserRule::select('id_menu')->where('id_level_user', $user);
+        $collection = UserRule::select('id_menu')->where('id_level_user', Auth::user()->id_level_user);
         $sql_menu = $menu->whereHas('rule', function ($query) use ($collection) {
         $query->whereIn('id', $collection)
         ->where('is_main_menu', 0);
@@ -28,5 +31,8 @@ class DashboardBaseController extends Controller
         'menu' => new Menu,
         'sql_menu' => $sql_menu
         );
+        }
+
+        
     }
 }

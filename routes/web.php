@@ -11,14 +11,12 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('/home');
-// });
+
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->middleware('auth');;
+Route::get('/home', 'HomeController@index')->middleware('auth');;
 
 // Route Siswa
 Route::get('/siswa', 'SiswaController@index');
