@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jurusan;
 use App\Kelas;
 use App\Siswa;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -61,6 +62,13 @@ class SiswaController extends DashboardBaseController
         $siswa = Siswa::create($this->validateRequest());
         
         $this->storeImage($siswa);
+
+        User::create([
+            'nama_lengkap' => $request->nama,
+            'email' => $request->email,
+            'password' => $request->password,
+            'id_level_user' => 5,
+        ]);
         
 
         return redirect()->action('SiswaController@index')->with('store', 'Data Siswa Berhasil Ditambahkan');
@@ -109,6 +117,15 @@ class SiswaController extends DashboardBaseController
         $siswa = Siswa::where('nis', $nis);
         $siswa->update($this->validateRequest());
         $this->storeImage($siswa);
+
+        User::where('email', $request->email)
+            ->update([
+                'email' => $request->email,
+                'password' => $request->password,
+        ]);
+
+
+
 
         return redirect()->action('SiswaController@index')->with('update', 'Data Siswa Berhasil Diupdate');
     }

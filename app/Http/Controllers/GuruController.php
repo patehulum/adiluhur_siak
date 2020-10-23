@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Guru;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -48,26 +49,15 @@ class GuruController extends DashboardBaseController
      */
     public function store(Request $request)
     {
-        // Guru::create([
-        //     'nuptk' => $request->nuptk,
-        //     'nama_guru' => $request->nama_guru,
-        //     'tempat_lahir' => $request->tempat_lahir,
-        //     'tanggal_lahir' => $request->tanggal_lahir,
-        //     'jenis_kelamin' => $request->jenis_kelamin,
-        //     'alamat_guru' => $request->alamat_guru,
-        //     'status' => $request->status,
-        //     'pendidikan_terakhir' => $request->pendidikan_terakhir,
-        //     'tahun' => $request->tahun,
-        //     'no_telp' => $request->no_telp,
-        //     'foto' => Storage::put('Guru', $request->foto),
-        //     'status' => $request->status,
-        //     'email' => $request->email,
-        //     'password' => $request->password,
-        // ]);
-
         $guru = Guru::create($this->validateRequest());
-        
         $this->storeImage($guru);
+
+        User::create([
+            'nama_lengkap' => $request->nama_guru,
+            'email' => $request->email,
+            'password' => $request->password,
+            'id_level_user' => 3,
+        ]);
 
         return redirect()->action('GuruController@index')->with('store', 'Data Guru Berhasil Ditambahkan');
     }
@@ -112,27 +102,15 @@ class GuruController extends DashboardBaseController
      */
     public function update(Request $request, $id_guru)
     {
-        // Guru::where('id_guru', $id_guru)
-        // ->update([
-        //     'nuptk' => $request->nuptk,
-        //     'nama_guru' => $request->nama_guru,
-        //     'tempat_lahir' => $request->tempat_lahir,
-        //     'tanggal_lahir' => $request->tanggal_lahir,
-        //     'jenis_kelamin' => $request->jenis_kelamin,
-        //     'alamat_guru' => $request->alamat_guru,
-        //     'status' => $request->status,
-        //     'pendidikan_terakhir' => $request->pendidikan_terakhir,
-        //     'tahun' => $request->tahun,
-        //     'no_telp' => $request->no_telp,
-        //     'foto' => Storage::put('Guru', $request->foto),
-        //     'status' => $request->status,
-        //     'email' => $request->email,
-        //     'password' => $request->password,
-        // ]);
-
         $guru = Guru::where('id_guru', $id_guru);
         $guru->update($this->validateRequest());
         $this->storeImage($guru);
+
+        User::where('email', $request->email)
+            ->update([
+                'email' => $request->email,
+                'password' => $request->password,
+        ]);
 
         return redirect()->action('GuruController@index')->with('update', 'Data Guru Berhasil Diupdate');
     }

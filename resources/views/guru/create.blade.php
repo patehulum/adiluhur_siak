@@ -4,19 +4,19 @@
 <div class="row">
     <div class="col-xs-12">
 
-        <div class="box box-primary">
+        <div class="box box-primary margin">
             <div class="box-header with-border">
                 <h3 class="box-title">Form Tambah Guru</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
 
-            <div class="box-body">
+            <div class="box-body margin">
                 <form role="form" class="form-horizontal" action="/guru/store" method="post"
                     enctype="multipart/form-data">
                     @csrf
 
-                    <div class="form-group">
+                    <div class="form-group margin">
                         <label class="col-sm-2 control-label">NUPTK</label>
 
                         <div class="col-sm-9">
@@ -192,8 +192,8 @@
      
       $('#datepicker').datepicker({
         format: "yyyy-mm-dd",
-        startDate: new Date('1980-1-1'),
-        endDate: new Date('1995-12-31')
+        endDate: new Date('1998-12-31'),
+        startDate: new Date('1965-1-1'),
       });
     
     });
