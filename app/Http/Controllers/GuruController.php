@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Guru;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class GuruController extends DashboardBaseController
@@ -55,7 +56,7 @@ class GuruController extends DashboardBaseController
         User::create([
             'nama_lengkap' => $request->nama_guru,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
             'id_level_user' => 3,
         ]);
 
@@ -109,7 +110,7 @@ class GuruController extends DashboardBaseController
         User::where('email', $request->email)
             ->update([
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
         ]);
 
         return redirect()->action('GuruController@index')->with('update', 'Data Guru Berhasil Diupdate');

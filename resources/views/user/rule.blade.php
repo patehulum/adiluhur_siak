@@ -19,8 +19,8 @@ Rule
                     <tr>
                         <th>Level User</th>
                         <th>
-                            <select name="level_user" class="form-control" id="filter_level" onchange="loadData()">
-                                <option value="">Pilih Level User</option>
+                            <select onchange="handleChange()" class="form-control" name="level_user" id="filter_level">
+                                <option value="">Pilih Level</option>
                                 @foreach ($level as $l)
                                 <option value="{{$l->id_level_user}}">{{$l->nama_level}}</option>
                                 @endforeach
@@ -58,19 +58,23 @@ Rule
                             <th>LINK</th>
                             <th>HAK AKSES</th>
                         </thead>
-                        <tbody>
+                        <tbody id="modul">
                             @foreach ($modul as $m)
                             <tr>
-                                <td></td>
+                                <td><input id="id_menu" value="{{$m->id}}" type="hidden">{{$m->id}}</td>
                                 <td>
-                                    <input id="id_menu" type="hidden" name="id_menu" value="">
                                     {{$m->nama_menu}}
                                 </td>
                                 <td>{{$m->link}}</td>
-                                <td class="text-center">
-                                    <input type="checkbox" onclick="addRule({{$m->id}})" @if (count($check)> 0)
-                                    checked
-                                    @endif>
+
+                                <td id="check" class="text-center">
+                                    @if ($count > 0)
+
+                                    <input class="id_check" type="checkbox" checked>
+                                    @else
+                                    <input class="id_check" type="checkbox">
+
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -88,31 +92,16 @@ Rule
 </div>
 @endsection
 <script>
-    // function loadData digunakan untuk menampilkan table yang ada di function module
-        function loadData()
-        {
-        var level = $("#filter_level").val();
-        
+    function handleChange()
+    {
+    var level = $("#filter_level").val();
+    $('#check').html('<td id="check" class="text-center"></td>');
         $.ajax({
             type : 'GET',
             url : 'http://localhost:8000/user/rule/'+level,
             success : function(res) {
-                console.log(res);
+                console.log(res)
             }
         })
-        }
-    
-        function addRule(id_modul)
-        {
-            var level = $("#filter_level").val();
-            $.ajax({
-                type    : 'GET',
-                url     : '',
-                data    : 'level_user='+level+'&id_modul='+id_modul,
-                success : function(html) 
-                    alert("Sukses Merubah Hak Akses");
-                }
-            })
-            
-        }
+    }
 </script>

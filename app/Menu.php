@@ -20,11 +20,4 @@ class Menu extends Model
         return $this->hasMany('App\UserRule', 'id_menu');
     }
 
-    public function users(){
-        return $this->hasMany('App\User');
-    }
-
-    public function siswa(){
-        return $this->hasMany('App\Siswa');
-    }
 }

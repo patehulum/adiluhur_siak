@@ -73,7 +73,7 @@ Data Jadwal |
 
         <div class="box box-primary">
             <div class="box-header  with-border">
-                <h3 class="box-title">Data Daftar Pelajaran</h3>
+                <h3 class="box-title">Data Jadwal Pelajaran</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

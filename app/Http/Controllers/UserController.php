@@ -8,6 +8,7 @@ use App\User;
 use App\UserRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends DashboardBaseController
@@ -87,7 +88,11 @@ class UserController extends DashboardBaseController
      */
     public function edit($id)
     {
-        
+        $menu = $this->view[0]->menu;
+        $sql_menu = $this->view[0]->sql_menu;
+        $user = User::all();
+
+        return view('/user/create', compact('sql_menu', 'menu', 'user'));
     }
 
     /**
@@ -105,7 +110,7 @@ class UserController extends DashboardBaseController
             ->update([
                 'nama_lengkap' => $request->nama_lengkap,
                 'email' => $request->email,
-                'password' => ($request->password) ? 'password' : Hash::make($request->password),
+                'password' => Hash::make($request->password),
                 'foto' => $foto,
             ]);
 
@@ -124,31 +129,39 @@ class UserController extends DashboardBaseController
 
         return redirect()->action('UserController@index');
     }
-
+ 
     public function rule()
     {
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
         $level = LevelUser::all();
-        $modul = Menu::all();
-        $l = LevelUser::select('id_level_user')->get();
-        $m = Menu::select('id')->get();
-        $check = UserRule::where([
-            ['id_level_user', $l],
-            ['id_menu', $m],
-        ])->get();
-        $checked = $check->count();
+        $modul = Menu::select('id', 'nama_menu', 'link')->with('rule')->get();
+        // dd($modul);
+        $collection = UserRule::select('id_menu')->where('id_level_user', 1);
+        $count = $menu->whereHas('rule', function ($query) use ($collection) {
+        $query->whereIn('id', $collection);
+        })->count();
 
-        // $check = UserRule::where([
-        //     ['id_level_user', $l],
-        //     ['id_menu', $m],
-        // ])->get();
-
-        return view('/user/rule', compact('sql_menu', 'menu', 'level', 'modul', 'check'));
+        return view('/user/rule', compact('sql_menu', 'menu', 'level', 'modul', 'count'));
     }
 
     public function level($level)
     {
-        return response()->json('Helo');
+        // $rule = UserRule::select('id_menu')->where('id_level_user', $level);
+        // $check = Menu::whereHas('rule', function ($query) use ($rule) {
+        // $query->whereIn('id', $rule);
+        // })->get();
+        // $modul = Menu::select('id', 'nama_menu', 'link')->with('rule')->get();
+
+        $menu = Menu::select('id')->get();
+        $rule = UserRule::where([
+            ['id_menu', $menu],
+            ['id_level_user', $level]
+        ])->get();
+
+        if ($rule->count()>0) {
+            echo "Checked";
+        }
+        return response()->json($rule);
     }
 }

@@ -214,7 +214,8 @@
                             <label class="col-sm-2 control-label">Password</label>
 
                             <div class="col-sm-5">
-                                <input type="text" name="password" class="form-control">
+                                <input type="password" value="{{$siswa->password}}" name="password"
+                                    class="form-control">
                             </div>
                         </div>
 

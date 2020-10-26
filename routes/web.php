@@ -100,7 +100,7 @@ Route::get('/kurikulum/{kd_kurikulum}', 'KurikulumController@show');
 Route::get('/kurikulum/{kd_kurikulum}/edit', 'KurikulumController@edit');
 Route::delete('/kurikulum/{kd_kurikulum}', 'KurikulumController@destroy');
 Route::patch('/kurikulum/{kd_kurikulum}', 'KurikulumController@update');
-
+ 
 // Route User;
 Route::get('/user', 'UserController@index');
 Route::get('/user/create', 'UserController@create');

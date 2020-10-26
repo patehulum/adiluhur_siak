@@ -65,6 +65,7 @@
 
                         <div class="col-sm-5">
                             <select name="kd_agama" class="form-control" required>
+                                <option value="">Pilih Agama</option>
                                 <option value="1">ISLAM</option>
                                 <option value="2">KRISTEN/ PROTESTAN</option>
                                 <option value="3">KATHOLIK</option>
@@ -162,6 +163,7 @@
 
                         <div class="col-sm-5">
                             <select name="kd_kelas" class="form-control" required>
+                                <option value="">Pilih Kelas</option>
                                 <option value="IPAX1">X IPA 1</option>
                                 <option value="IPAX2">X IPA 2</option>
                                 <option value="IPAXI1">XI IPA 1</option>

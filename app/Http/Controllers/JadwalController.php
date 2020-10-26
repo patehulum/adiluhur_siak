@@ -9,9 +9,11 @@ use App\Kelas;
 use App\Kurikulum;
 use App\KurikulumDetail;
 use App\Ruangan;
+use App\Siswa;
 use App\TahunAkademik;
 use App\TingkatanKelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class JadwalController extends DashboardBaseController
@@ -34,10 +36,31 @@ class JadwalController extends DashboardBaseController
         $ruangan = Ruangan::all();
         $jurusan = Jurusan::all();
         $tingkatan = TingkatanKelas::all();
+        $tahun = TahunAkademik::where('is_aktif', 'Y')->first();
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
+        if (Auth::user()->id_level_user == 1) {
 
-        return view('/jadwal/index', compact('menu', 'sql_menu','jadwal', 'kurikulum','jurusan', 'tingkatan'));
+            return view('/jadwal/index', compact('menu', 'sql_menu','jadwal', 'kurikulum','jurusan', 'tingkatan', 'tahun'));
+            
+        } elseif(Auth::user()->id_level_user == 5) {
+
+            $siswa = Siswa::select('kd_kelas')
+            ->where('email', Auth::user()->email)
+            ->first();
+            
+            $jsiswa = Jadwal::where('kd_kelas', $siswa->kd_kelas)->get();
+
+            return view('/jadwal/siswa', compact('menu', 'sql_menu','jsiswa', 'kurikulum','jurusan', 'tingkatan', 'tahun'));
+            
+        } else {
+        }
+        $guru = Guru::select('id_guru')
+        ->where('email', Auth::user()->email)
+        ->first();
+        $jguru = Jadwal::where('id_guru', $guru->id_guru)->get();
+
+        return view('/jadwal/guru', compact('menu', 'sql_menu','jguru', 'kurikulum','jurusan', 'tingkatan', 'tahun'));              
     }
 
     /**

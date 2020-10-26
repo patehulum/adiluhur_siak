@@ -8,6 +8,7 @@ use App\Siswa;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends DashboardBaseController
@@ -66,7 +67,7 @@ class SiswaController extends DashboardBaseController
         User::create([
             'nama_lengkap' => $request->nama,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
             'id_level_user' => 5,
         ]);
         
@@ -121,11 +122,8 @@ class SiswaController extends DashboardBaseController
         User::where('email', $request->email)
             ->update([
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password)
         ]);
-
-
-
 
         return redirect()->action('SiswaController@index')->with('update', 'Data Siswa Berhasil Diupdate');
     }
