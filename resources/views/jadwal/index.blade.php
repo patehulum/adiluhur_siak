@@ -173,7 +173,7 @@ Data Jadwal |
         $('#table_daftarpelajaran').html('<table><tr><th>NO</th><th>MATA PELAJARAN</th><th>GURU</th><th>RUANGAN</th><th>HARI</th><th>JAM</th></tr></table>');
         $.ajax({
             type : 'GET',
-            url : 'http://localhost:8000/jadwal/mapel/'+tingkatan_kelas+'/'+kelas,
+            url : 'http://localhost:8000/jadwal/mapel/'+tingkatan_kelas+'/'+jurusan,
             success : function(res) {
                 $.each(res.jadwal, function(i, item){
                     // console.log(item);

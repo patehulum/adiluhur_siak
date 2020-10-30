@@ -32,7 +32,7 @@ class Kelas extends Model
     }
 
     public function jadwal(){
-        return $this->hasMany('App\Jadwal');
+        return $this->hasMany('App\Jadwal'); 
     }
     
     public function kurikulum(){

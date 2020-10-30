@@ -26,12 +26,8 @@ Rule
                                 @endforeach
                             </select>
                         </th>
-
                     </tr>
                 </table>
-
-                </form>
-
             </div>
             <!-- /.box-body -->
         </div>
@@ -58,7 +54,7 @@ Rule
                             <th>LINK</th>
                             <th>HAK AKSES</th>
                         </thead>
-                        <tbody id="modul">
+                        <tbody>
                             @foreach ($modul as $m)
                             <tr>
                                 <td><input id="id_menu" value="{{$m->id}}" type="hidden">{{$m->id}}</td>
@@ -68,13 +64,8 @@ Rule
                                 <td>{{$m->link}}</td>
 
                                 <td id="check" class="text-center">
-                                    @if ($count > 0)
-
-                                    <input class="id_check" type="checkbox" checked>
-                                    @else
-                                    <input class="id_check" type="checkbox">
-
-                                    @endif
+                                    <input class="id_check" type="checkbox" {{-- @foreach ($count as $c)
+                                        {{$c->id == $m->id ? 'checked' : ''}} @endforeach --}}>
                                 </td>
                             </tr>
                             @endforeach
@@ -95,12 +86,25 @@ Rule
     function handleChange()
     {
     var level = $("#filter_level").val();
-    $('#check').html('<td id="check" class="text-center"></td>');
-        $.ajax({
-            type : 'GET',
-            url : 'http://localhost:8000/user/rule/'+level,
-            success : function(res) {
-                console.log(res)
+    $('#mytable').html('<table id="mytable" class="table table-striped table-bordered table-hover table-full-width dataTable" cellspacing="0" width="100%"><thead><th>NO</th><th>NAMA MODUL</th><th>LINK</th><th>HAK AKSES</th></thead></table>');
+    $.ajax({
+        type : 'GET',
+        url : 'http://localhost:8000/user/rule/'+level,
+        success : function(res) {
+            $.each(res.count, function(c, count){
+                    try {
+                        $.each(res.menu, function (m, menu) {
+                        $('#mytable').append('<tbody><tr><td>'+menu.id+'</td><td>'+menu.nama_menu+'</td><td>'+menu.link+'</td><td id="check" class="text-center"><input type="checkbox" class="check"></td></tr></tbody>');
+                                if (menu.id == count.id) {
+                                    console.log(count.id);
+                                    $('#check').html('<input type="checkbox" checked>');
+                                }
+                        })
+                    } catch (error){
+                        console.log(error);
+                    }
+                })
+                // console.log(res.menu)
             }
         })
     }

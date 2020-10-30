@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // UserRuleSeeder::class,
             // MenuSeeder::class,
-            // UserSeeder::class,
+            UserSeeder::class,
             // AgamaSeeder::class,
             // KelasSeeder::class,
             // LevelUserSeeder::class,
