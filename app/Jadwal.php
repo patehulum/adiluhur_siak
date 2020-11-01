@@ -52,5 +52,9 @@ class Jadwal extends Model
         return $this->belongsTo('App\Ruangan','kd_ruangan', 'kd_ruangan');
     }
 
+    public function nilai()
+    {
+        return $this->hasMany('App\Nilai');
+    }
 
 }

@@ -8,6 +8,7 @@ use App\Jurusan;
 use App\Kelas;
 use App\Kurikulum;
 use App\KurikulumDetail;
+use App\Nilai;
 use App\Ruangan;
 use App\Siswa;
 use App\TahunAkademik;
@@ -90,19 +91,36 @@ class JadwalController extends DashboardBaseController
                 ['kd_tingkatan', $k->kd_tingkatan],
             ])->first();
 
-                Jadwal::create([
+            $jadwal = new Jadwal;
 
-                    'id_tahun_akademik' => $tahun->id_tahun_akademik,
-                    'semester'			=> $request->semester,
-                    'kd_jurusan'		=> $k->kd_jurusan,
-                    'kd_tingkatan'		=> $k->kd_tingkatan,
-                    'kd_kelas'			=> $kelas->kd_kelas,
-                    'kd_mapel'			=> $k->kd_mapel,
-                    'id_guru'			=> '0',
-                    'jam'				=> '',
-                    'kd_ruangan'		=> '000',
-                    'hari'				=> ''
-                ]);
+            $jadwal->id_tahun_akademik   = $tahun->id_tahun_akademik;
+            $jadwal->semester	    = $request->semester;
+            $jadwal->kd_jurusan	    = $k->kd_jurusan;
+            $jadwal->kd_tingkatan    = $k->kd_tingkatan;
+            $jadwal->kd_kelas	    = $kelas->kd_kelas;
+            $jadwal->kd_mapel	    = $k->kd_mapel;
+            $jadwal->id_guru		= '0';
+            $jadwal->jam			=' ';
+            $jadwal->kd_ruangan	    = '000';
+            $jadwal->hari			= ' ';
+            $jadwal->save();
+
+            $id = DB::getPdo()->lastInsertId();;
+            // dd($id);
+            $siswa = Siswa::where('kd_kelas', $kelas->kd_kelas)->get();
+            foreach ($siswa as $s) {
+                $nilai = new Nilai;
+                $nilai->id_jadwal   = $id;
+                $nilai->nilai_tugas = 0;
+                $nilai->nilai_uts   = 0;
+                $nilai->nilai_uas   = 0;
+                $nilai->nis         = $s->nis;
+                // $nilai->nilai       = (0.3*$nilai->nilai_tugas) + (0.3*$nilai->nilai_uts) + (0.4*$nilai->nilai_uas);
+                $nilai->nilai       = 38;
+                $nilai->status      = "-";
+                $nilai->save();   
+            }
+
         }
         return redirect()->action('JadwalController@index');
         
@@ -165,11 +183,11 @@ class JadwalController extends DashboardBaseController
         return response()->json($data);
     }
 
-    public function mapel($tingkatan, $kelas)
+    public function mapel($tingkatan, $jurusan)
     {
         $jadwal = Jadwal::where([
             ['kd_tingkatan', $tingkatan],
-            ['kd_kelas', $kelas],
+            ['kd_jurusan', $jurusan],
         ])->with('mapel', 'guru', 'ruangan')->get();
 
         $guru = Guru::all();

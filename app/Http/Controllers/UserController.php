@@ -9,7 +9,9 @@ use App\UserRule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class UserController extends DashboardBaseController
 {
@@ -42,8 +44,9 @@ class UserController extends DashboardBaseController
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
         $user = User::all();
+        $level = LevelUser::all();
 
-        return view('/user/create', compact('sql_menu', 'menu', 'user'));
+        return view('/user/create', compact('sql_menu', 'menu', 'user', 'level'));
     }
 
     /**
@@ -54,13 +57,24 @@ class UserController extends DashboardBaseController
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'nama_lengkap'  => 'required',
+            'email'         => 'required',
+            'password'      => 'required',
+        ]);
+
         User::create([
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'id_level_user' => $request->id_level_user,
-            'foto' => Storage::put('User', $request->foto),
         ]);
+
+        if (request()->has('foto')) {
+            User::create([
+                'foto' => Storage::put('Siswa', request()->foto),
+            ]);
+        }
 
         return redirect()->action('UserController@index');
     }
@@ -75,7 +89,8 @@ class UserController extends DashboardBaseController
     {
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
-        $user = LevelUser::all();
+        $decrypt =
+            $user = LevelUser::all();
 
         return view('/user/rule', compact('sql_menu', 'menu', 'user'));
     }
@@ -90,9 +105,10 @@ class UserController extends DashboardBaseController
     {
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
-        $user = User::all();
+        $user = User::where('id', $id)->first();
+        $level = LevelUser::all();
 
-        return view('/user/create', compact('sql_menu', 'menu', 'user'));
+        return view('/user/edit', compact('sql_menu', 'menu', 'user', 'level'));
     }
 
     /**
@@ -105,16 +121,33 @@ class UserController extends DashboardBaseController
     public function update(Request $request, $id)
     {
         // dd($request);
-        $foto = $request->file('foto')->store('User');
+        request()->validate([
+            'nama_lengkap'  => 'required',
+            'email'         => 'required',
+        ]);
+
+
         User::where('id', $id)
             ->update([
                 'nama_lengkap' => $request->nama_lengkap,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'foto' => $foto,
             ]);
 
-        return redirect()->action('UserController@index');
+        if (request()->has('password')) {
+            User::where('id', $id)
+                ->update([
+                    'password' => Hash::make($request->password)
+                ]);
+        }
+
+        if (request()->has('foto')) {
+            User::where('id', $id)
+                ->update([
+                    'foto' => Storage::put('Siswa', request()->foto)
+                ]);
+        }
+
+        return redirect()->action('UserController@index')->with('update', 'Data User Berhasil di Update');
     }
 
     /**
@@ -129,18 +162,17 @@ class UserController extends DashboardBaseController
 
         return redirect()->action('UserController@index');
     }
- 
+
     public function rule()
     {
         $menu = $this->view[0]->menu;
         $sql_menu = $this->view[0]->sql_menu;
         $level = LevelUser::all();
         $modul = Menu::select('id', 'nama_menu', 'link')->with('rule')->get();
-        // dd($modul);
         $collection = UserRule::select('id_menu')->where('id_level_user', 1);
         $count = $menu->whereHas('rule', function ($query) use ($collection) {
-        $query->whereIn('id', $collection);
-        })->count();
+            $query->whereIn('id', $collection);
+        })->get();
 
         return view('/user/rule', compact('sql_menu', 'menu', 'level', 'modul', 'count'));
     }
@@ -153,15 +185,15 @@ class UserController extends DashboardBaseController
         // })->get();
         // $modul = Menu::select('id', 'nama_menu', 'link')->with('rule')->get();
 
-        $menu = Menu::select('id')->get();
-        $rule = UserRule::where([
-            ['id_menu', $menu],
-            ['id_level_user', $level]
-        ])->get();
+        $menu = Menu::all();
+        $collection = UserRule::select('id_menu')->where('id_level_user', $level);
+        $count = Menu::whereHas('rule', function ($query) use ($collection) {
+            $query->whereIn('id', $collection);
+        })->get();
 
-        if ($rule->count()>0) {
-            echo "Checked";
-        }
-        return response()->json($rule);
+        return response()->json([
+            'menu'  => $menu,
+            'count' => $count
+        ]);
     }
 }

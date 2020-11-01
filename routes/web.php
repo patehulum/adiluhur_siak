@@ -135,6 +135,7 @@ Route::patch('/didik/{id}', 'DidikDetailController@update');
 // Route Jadwal;
 Route::get('/jadwal', 'JadwalController@index');
 Route::get('/jadwal/create', 'JadwalController@create');
+Route::post('/jadwal/store', 'JadwalController@store');
 Route::get('/jadwal/kelas/{jurusan}/{tingkatan}', 'JadwalController@kelas');
 Route::get('/jadwal/mapel/{tingkatan}/{kelas}', 'JadwalController@mapel');
 Route::get('/jadwal/guru/{guru}/{id}', 'JadwalController@guru');
@@ -154,3 +155,9 @@ Route::post('/menu/store', 'MenuController@store');
 Route::get('/menu/{id}/edit', 'MenuController@edit');
 Route::delete('/menu/{id}', 'MenuController@destroy');
 Route::patch('/menu/{id}', 'MenuController@update');
+
+// Route Nilai;
+Route::get('/nilai', 'NilaiController@index');
+Route::get('/nilai/{id_jadwal}', 'NilaiController@edit');
+Route::get('/nilai/update/{id}/{tugas}/{uts}/{uas}', 'NilaiController@nilai');
+

@@ -26,7 +26,7 @@
 
                             <div class="col-sm-9">
                                 <input type="text" value="{{$user->nama_lengkap}}" name="nama_lengkap"
-                                    class="form-control" placeholder="Masukan Nama Lengkap">
+                                    class="form-control" placeholder="Masukan Nama Lengkap" required>
                             </div>
                         </div>
 
@@ -35,7 +35,16 @@
 
                             <div class="col-sm-9">
                                 <input type="email" value="{{$user->email}}" name="email" class="form-control"
-                                    placeholder="Masukan Email">
+                                    placeholder="Masukan Email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Old Password</label>
+
+                            <div class="col-sm-9">
+                                <input type="password" value="{{$user->password}}" class="form-control"
+                                    placeholder="Masukan Password">
                             </div>
                         </div>
 
@@ -43,8 +52,8 @@
                             <label class="col-sm-2 control-label">Password</label>
 
                             <div class="col-sm-9">
-                                <input type="password" name="password" class="form-control"
-                                    placeholder="Masukan Password">
+                                <input type="password" class="form-control" placeholder="Masukan Password"
+                                    name="password">
                             </div>
                         </div>
 
@@ -79,18 +88,18 @@
                                 <button type="submit" name="submit" class="btn btn-primary btn-flat">Simpan</button>
                             </div>
 
-                            {{-- <div class="col-sm-1">
-                                <form action="/siswa/{{$siswa->nis}}">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" value="{{$user->}}" name="submit"
-                                class="btn btn-danger btn-flat">Delete</button>
+                            <div class="col-sm-1">
+                                {{-- <form action="/siswa/{{$siswa->nis}}">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" value="{{$user->}}" name="submit"
+                                    class="btn btn-danger btn-flat">Delete</button>
+                    </form> --}}
                     </form>
-                </div> --}}
+                </div>
             </div>
         </div>
         <!-- /.box-body -->
-        </form>
     </div>
     <!-- /.box -->
     </div>

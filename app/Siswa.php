@@ -29,5 +29,9 @@ class Siswa extends Model
     public function jurusan(){
         return $this->belongsTo('App\Jurusan', 'kd_jurusan', 'kd_jurusan');
     }
-
+    
+    public function nilai()
+    {
+        return $this->hasMany('App\Nilai');
+    }
 }

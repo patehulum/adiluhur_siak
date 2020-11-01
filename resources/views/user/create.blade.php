@@ -46,8 +46,8 @@
                         <div class="col-sm-5">
                             <select name="id_level_user" class="form-control">
                                 <option value="0">Pilih Level User</option>
-                                @foreach ($user as $u)
-                                <option value="{{$u->leveluser->id_level_user}}">{{$u->leveluser->nama_level}}</option>
+                                @foreach ($level as $l)
+                                <option value="{{$l->id_level_user}}">{{$l->nama_level}}</option>
                                 @endforeach
                             </select>
                         </div>
